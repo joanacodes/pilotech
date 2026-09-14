@@ -13,7 +13,7 @@ description: >-
 
 # À CONFIRMER : nom de domaine définitif du site unifié.
 url: "https://pilotech.eu"
-baseurl: ""
+baseurl: "/pilotech"
 lang: fr
 timezone: Europe/Paris
 
@@ -29,7 +29,7 @@ company:
   reviews_count: "82"
   reviews_label: "82 avis Google"
   area: "Paris et Île-de-France"
-  city: "Sucy-en-Brie"           # siège (fiche Google Business « Pilotech, Sucy ») — à confirmer
+  city: "Sucy-en-Brie" # siège (fiche Google Business « Pilotech, Sucy ») — à confirmer
   postal_code: "94370"
   hours_label: "Lundi – vendredi, 9 h – 18 h"
   founder: "Fabrice Gibier-Zlotnitzky"
@@ -40,7 +40,7 @@ company:
   satellites:
     toshiba: "https://pilotech-toshiba.com"
     vmi: "https://pilotech-vmi.fr"
-    invisible: "https://www.pilotech.eu"   # site Squarespace actuel (Teknopoint)
+    invisible: "https://www.pilotech.eu" # site Squarespace actuel (Teknopoint)
 
 # ---- Formulaires : FormSubmit (aucun backend requis) ----
 # Au premier envoi, FormSubmit envoie un e-mail de confirmation à cette adresse.
@@ -50,8 +50,16 @@ forms:
 
 # ---- Navigation principale ----
 nav:
-  - { title: "Climatisation Toshiba", url: "/climatisation/", menu: climatisation }
-  - { title: "Climatisation invisible", url: "/climatisation-invisible/", menu: invisible }
+  - {
+      title: "Climatisation Toshiba",
+      url: "/climatisation/",
+      menu: climatisation,
+    }
+  - {
+      title: "Climatisation invisible",
+      url: "/climatisation-invisible/",
+      menu: invisible,
+    }
   - { title: "Ventilation VMI", url: "/ventilation/", menu: ventilation }
   - { title: "Services", url: "/services/" }
   - { title: "À propos", url: "/a-propos/" }
