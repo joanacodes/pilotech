@@ -1,0 +1,26 @@
+{%- comment -%} Avis Google. Paramètre : limit (nombre d'avis affichés, défaut 6) {%- endcomment -%}
+{%- assign n = include.count | default: 6 -%}
+<section class="bg-mist py-16 lg:py-20" aria-labelledby="avis-titre">
+  <div class="container">
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div>
+        <h2 id="avis-titre">Ce que disent nos clients</h2>
+        <p class="mt-2 max-w-xl text-body">Note moyenne de {{ site.company.rating }}/5 sur {{ site.company.reviews_label }}. Des avis publics, laissés après chantier par des particuliers et des professionnels.</p>
+      </div>
+      <div class="inline-flex items-center gap-1 text-warm" aria-label="{{ site.company.rating }} étoiles sur 5">
+        {%- for i in (1..5) -%}{% include icons.html name="star" class="h-5 w-5" %}{%- endfor -%}
+      </div>
+    </div>
+    <div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {%- for r in site.data.reviews limit: n -%}
+      <figure class="flex flex-col rounded-md border border-line bg-white p-6">
+        <blockquote class="flex-1 text-sm leading-relaxed text-body">« {{ r.text }} »</blockquote>
+        <figcaption class="mt-5 border-t border-line pt-4 text-sm">
+          <span class="font-600 text-ink">{{ r.name }}</span>
+          <span class="block text-xs text-muted">{{ r.context }}. Avis Google</span>
+        </figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>

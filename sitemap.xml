@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /sitemap.xml
+sitemap: false
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+{%- for p in site.pages -%}
+{%- if p.sitemap == false or p.robots contains "noindex" or p.url contains ".xml" or p.url contains ".txt" or p.url contains "404" %}{% continue %}{% endif %}
+  <url>
+    <loc>{{ p.url | absolute_url }}</loc>
+    <changefreq>{% if p.url == "/" %}weekly{% else %}monthly{% endif %}</changefreq>
+    <priority>{% if p.url == "/" %}1.0{% elsif p.universe_index %}0.9{% else %}0.7{% endif %}</priority>
+  </url>
+{%- endfor -%}
+{%- for p in site.products %}
+  <url>
+    <loc>{{ p.url | absolute_url }}</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    {%- if p.image contains "http" %}
+    <image:image><image:loc>{{ p.image }}</image:loc><image:title>{{ p.brand }} {{ p.name | escape }}</image:title></image:image>
+    {%- else %}
+    <image:image><image:loc>{{ p.image | absolute_url }}</image:loc><image:title>{{ p.brand }} {{ p.name | escape }}</image:title></image:image>
+    {%- endif %}
+  </url>
+{%- endfor -%}
+</urlset>

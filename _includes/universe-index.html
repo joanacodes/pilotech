@@ -1,0 +1,83 @@
+{%- comment -%} Page catalogue d'un univers. Paramètre : universe (clé) {%- endcomment -%}
+{%- assign key = include.universe -%}
+{%- assign u = site.universes[key] -%}
+{%- assign list = site.products | where: "universe", key | sort: "order" -%}
+<section class="container py-12 lg:py-16">
+  <div class="max-w-3xl">
+    <p class="text-sm text-muted">{{ list.size }} gammes {{ u.brand }}</p>
+    <h1 class="mt-2 text-display-xl">{{ page.heading }}</h1>
+    <p class="mt-6 text-lg leading-relaxed text-body">{{ page.intro }}</p>
+  </div>
+  <div class="thermal mt-10" data-draw aria-hidden="true"></div>
+</section>
+
+{%- if page.groups %}
+{%- for g in page.groups %}
+<section class="container pb-14" aria-labelledby="groupe-{{ forloop.index }}">
+  <div class="flex flex-col gap-2 border-t border-line pt-8 md:flex-row md:items-baseline md:justify-between">
+    <h2 id="groupe-{{ forloop.index }}">{{ g.title }}</h2>
+    <p class="max-w-xl text-sm text-body">{{ g.text }}</p>
+  </div>
+  <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {%- for slug in g.products -%}
+      {%- for p in list -%}
+        {%- if p.slug == slug %}{% include product-card.html product=p %}{% endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endfor %}
+{%- else %}
+<section class="container pb-14">
+  <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {%- for p in list %}{% include product-card.html product=p %}{% endfor -%}
+  </div>
+</section>
+{%- endif %}
+
+{%- if page.compare %}
+<section class="bg-mist py-14" aria-labelledby="comparer-titre">
+  <div class="container">
+    <h2 id="comparer-titre">{{ page.compare.title }}</h2>
+    <p class="mt-2 max-w-2xl text-body">{{ page.compare.text }}</p>
+    <div class="mt-8 overflow-x-auto">
+      <table class="w-full min-w-[720px] text-sm">
+        <thead>
+          <tr class="border-b border-line text-left text-xs text-muted">
+            <th scope="col" class="py-3 pr-4 font-500">Modèle</th>
+            {%- for col in page.compare.columns %}<th scope="col" class="py-3 pr-4 font-500">{{ col }}</th>{% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {%- for row in page.compare.rows -%}
+          {%- for p in list -%}
+            {%- if p.slug == row.product -%}
+            <tr class="border-b border-line">
+              <th scope="row" class="py-3 pr-4 text-left font-600 text-ink"><a href="{{ p.url | relative_url }}" class="hover:text-brand">{{ p.name }}</a></th>
+              {%- for v in row.values %}<td class="py-3 pr-4 num text-body">{{ v }}</td>{% endfor %}
+            </tr>
+            {%- endif -%}
+          {%- endfor -%}
+          {%- endfor -%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if page.faq_groups %}
+<section class="container py-14" aria-labelledby="faq-titre">
+  <h2 id="faq-titre">Questions fréquentes</h2>
+  <div class="mt-6 max-w-3xl divide-y divide-line border-y border-line">
+    {%- for g in page.faq_groups -%}
+    {%- for item in site.data.faq[g] -%}
+    <details class="group py-4">
+      <summary class="flex cursor-pointer items-center justify-between gap-4 font-600 text-ink">{{ item.q }}<span class="shrink-0 text-muted transition group-open:rotate-180">{% include icons.html name="chevron-down" class="h-4 w-4" %}</span></summary>
+      <p class="mt-3 max-w-prose leading-relaxed text-body">{{ item.a }}</p>
+    </details>
+    {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif %}

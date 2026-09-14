@@ -1,0 +1,104 @@
+{%- assign products = site.products | sort: "order" -%}
+<header id="header" class="bg-white border-b border-line">
+  <div class="hidden lg:block border-b border-line">
+    <div class="container flex items-center justify-between py-1.5 text-xs text-muted">
+      <div class="flex items-center gap-5">
+        <a href="{{ site.company.phone_href }}" class="inline-flex items-center gap-1.5 hover:text-ink">{% include icons.html name="phone" class="h-3.5 w-3.5" %}{{ site.company.phone }}</a>
+        <a href="mailto:{{ site.company.email }}" class="inline-flex items-center gap-1.5 hover:text-ink">{% include icons.html name="mail" class="h-3.5 w-3.5" %}{{ site.company.email }}</a>
+        <span class="inline-flex items-center gap-1.5"><span class="text-warm">{% include icons.html name="star" class="h-3.5 w-3.5" %}</span>{{ site.company.rating }}/5 sur {{ site.company.reviews_label }}</span>
+        <span>{{ site.company.hours_label }}</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="{{ site.company.social.instagram }}" target="_blank" rel="noopener" aria-label="Pilotech sur Instagram" class="hover:text-ink">{% include icons.html name="instagram" class="h-4 w-4" %}</a>
+        <a href="{{ site.company.social.linkedin }}" target="_blank" rel="noopener" aria-label="Pilotech sur LinkedIn" class="hover:text-ink">{% include icons.html name="linkedin" class="h-4 w-4" %}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container relative flex items-center justify-between gap-6 py-3">
+    <a href="{{ '/' | relative_url }}" class="shrink-0" aria-label="Pilotech, accueil">
+      <img src="{{ '/assets/img/brand/pilotech-logo.png' | relative_url }}" alt="Pilotech" width="714" height="185" class="h-11 w-auto lg:h-12">
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-7 text-sm font-500 text-ink" aria-label="Navigation principale">
+      {%- for item in site.nav -%}
+        {%- assign active = false -%}
+        {%- if item.url == '/' -%}{%- if page.url == '/' -%}{%- assign active = true -%}{%- endif -%}
+        {%- elsif page.url contains item.url -%}{%- assign active = true -%}
+        {%- elsif page.universe == item.menu -%}{%- assign active = true -%}
+        {%- endif -%}
+        {%- if item.menu -%}
+        <div data-menu>
+          <a href="{{ item.url | relative_url }}" class="inline-flex items-center gap-1 py-2 {% if active %}text-brand{% else %}hover:text-brand{% endif %}" aria-haspopup="true" aria-expanded="false">{{ item.title }}{% include icons.html name="chevron-down" class="h-3.5 w-3.5 text-muted" %}</a>
+          <div class="menu-panel" role="region" aria-label="Gammes {{ item.title | downcase }}">
+            <div class="border-t border-line bg-white">
+              <div class="container py-8">
+                {%- assign u = site.universes[item.menu] -%}
+                {%- assign list = products | where: "universe", item.menu -%}
+                <div class="mb-6 flex items-end justify-between gap-6">
+                  <div>
+                    <p class="font-display text-2xl font-600 text-ink">{{ u.name }}</p>
+                    <p class="mt-1 text-sm text-muted">{{ u.intro }}</p>
+                  </div>
+                  <a href="{{ item.url | relative_url }}" class="btn btn-secondary shrink-0">Voir les {{ list.size }} gammes</a>
+                </div>
+                <div class="grid grid-cols-5 gap-x-5 gap-y-6">
+                  {%- for p in list -%}
+                  <a href="{{ p.url | relative_url }}" class="group no-underline">
+                    <div class="flex h-24 items-center justify-center rounded-md bg-mist p-3">
+                      {%- if p.image contains "http" -%}{%- assign src = p.image -%}{%- else -%}{%- assign src = p.image | relative_url -%}{%- endif -%}
+                      <img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="mt-2 block text-sm font-600 text-ink group-hover:text-brand">{{ p.name }}</span>
+                    <span class="block text-xs text-muted">{{ p.tagline }}</span>
+                  </a>
+                  {%- endfor -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {%- else -%}
+        <a href="{{ item.url | relative_url }}" class="py-2 {% if active %}text-brand{% else %}hover:text-brand{% endif %}">{{ item.title }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary hidden sm:inline-flex">Demander un devis</a>
+      <button type="button" data-drawer-open class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded border border-line text-ink" aria-label="Ouvrir le menu" aria-controls="drawer" aria-expanded="false">{% include icons.html name="menu" class="h-6 w-6" %}</button>
+    </div>
+  </div>
+</header>
+
+<div data-drawer-backdrop class="fixed inset-0 z-[60] hidden bg-ink/50 lg:hidden"></div>
+<nav id="drawer" class="drawer lg:hidden" aria-label="Menu mobile" aria-hidden="true">
+  <div class="flex items-center justify-between border-b border-line px-5 py-4">
+    <span class="font-display text-lg font-600 text-ink">Menu</span>
+    <button type="button" data-drawer-close class="inline-flex h-10 w-10 items-center justify-center rounded text-muted hover:text-ink" aria-label="Fermer le menu">{% include icons.html name="close" class="h-6 w-6" %}</button>
+  </div>
+  <div class="flex-1 overflow-y-auto px-5 py-4">
+    {%- for item in site.nav -%}
+      {%- if item.menu -%}
+      <details class="border-b border-line" {% if page.universe == item.menu %}open{% endif %}>
+        <summary class="flex cursor-pointer items-center justify-between py-3 font-500 text-ink">{{ item.title }}{% include icons.html name="chevron-down" class="h-4 w-4 text-muted" %}</summary>
+        <ul class="pb-3 pl-3 text-sm">
+          <li><a href="{{ item.url | relative_url }}" class="block py-1.5 text-brand">Toutes les gammes</a></li>
+          {%- assign list = products | where: "universe", item.menu -%}
+          {%- for p in list -%}
+          <li><a href="{{ p.url | relative_url }}" class="block py-1.5 text-body hover:text-brand">{{ p.name }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </details>
+      {%- else -%}
+      <a href="{{ item.url | relative_url }}" class="block border-b border-line py-3 font-500 text-ink hover:text-brand">{{ item.title }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+    <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary mt-5 w-full">Demander un devis</a>
+    <div class="mt-6 space-y-2 text-sm text-muted">
+      <a href="{{ site.company.phone_href }}" class="flex items-center gap-2 hover:text-ink">{% include icons.html name="phone" class="h-4 w-4" %}{{ site.company.phone }}</a>
+      <a href="mailto:{{ site.company.email }}" class="flex items-center gap-2 hover:text-ink">{% include icons.html name="mail" class="h-4 w-4" %}{{ site.company.email }}</a>
+      <span class="flex items-center gap-2"><span class="text-warm">{% include icons.html name="star" class="h-4 w-4" %}</span>{{ site.company.rating }}/5 sur {{ site.company.reviews_label }}</span>
+    </div>
+  </div>
+</nav>

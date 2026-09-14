@@ -1,0 +1,18 @@
+{%- comment -%} Bandeau de contact en bas de page. Paramètres : title, text, product {%- endcomment -%}
+<section class="bg-brand-light py-16 lg:py-20" id="devis">
+  <div class="container grid gap-10 lg:grid-cols-12 lg:items-start">
+    <div class="lg:col-span-5">
+      <h2>{{ include.title | default: "Parlons de votre projet" }}</h2>
+      <p class="mt-4 text-body">{{ include.text | default: "Décrivez votre logement ou vos locaux en quelques lignes. Nous vous rappelons sous 24 heures ouvrées pour organiser une visite technique gratuite, à Paris et dans toute l'Île-de-France." }}</p>
+      <ul class="mt-6 space-y-2 text-sm text-body">
+        <li class="flex items-center gap-2"><span class="text-brand">{% include icons.html name="check" class="h-4 w-4" %}</span>Étude et devis gratuits, sans engagement</li>
+        <li class="flex items-center gap-2"><span class="text-brand">{% include icons.html name="check" class="h-4 w-4" %}</span>Installateur agréé Toshiba, partenaire Teknopoint, installateur VMI</li>
+        <li class="flex items-center gap-2"><span class="text-brand">{% include icons.html name="check" class="h-4 w-4" %}</span>{{ site.company.rating }}/5 sur {{ site.company.reviews_label }}</li>
+      </ul>
+      <p class="mt-6 text-sm text-body">Vous préférez appeler ? <a href="{{ site.company.phone_href }}" class="font-600 text-ink">{{ site.company.phone }}</a>, du lundi au vendredi de 9 h à 18 h.</p>
+    </div>
+    <div class="rounded-md border border-line bg-white p-6 lg:col-span-7 lg:p-8">
+      {% include form-devis.html id="cta" subject=include.subject product=include.product compact=include.compact %}
+    </div>
+  </div>
+</section>

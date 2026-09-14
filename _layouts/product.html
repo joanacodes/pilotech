@@ -1,0 +1,202 @@
+---
+layout: default
+---
+{%- assign u = site.universes[page.universe] -%}
+{%- assign siblings = site.products | where: "universe", page.universe | sort: "order" -%}
+{%- if page.image contains "http" -%}{%- assign main_src = page.image -%}{%- else -%}{%- assign main_src = page.image | relative_url -%}{%- endif -%}
+
+<article>
+  <!-- En-tête produit : galerie + fiche d'identité -->
+  <section class="container py-10 lg:py-14">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-14">
+      <div class="min-w-0 lg:col-span-7">
+        {%- if page.gallery and page.gallery.size > 1 %}
+        <div data-gallery>
+          <div class="gallery-main">
+            <img data-gallery-main src="{{ main_src }}" alt="{{ page.brand }} {{ page.name }}" width="1200" height="900" fetchpriority="high">
+            <button type="button" data-gallery-prev class="gallery-arrow left-3" aria-label="Image précédente">{% include icons.html name="chevron-left" class="h-5 w-5" %}</button>
+            <button type="button" data-gallery-next class="gallery-arrow right-3" aria-label="Image suivante">{% include icons.html name="chevron-right" class="h-5 w-5" %}</button>
+            <span data-gallery-counter class="absolute bottom-3 right-3 rounded bg-white/90 px-2 py-0.5 text-xs text-muted num">1 / {{ page.gallery.size }}</span>
+          </div>
+          <div class="gallery-thumbs" role="list">
+            {%- for g in page.gallery -%}
+              {%- if g.src contains "http" -%}{%- assign gsrc = g.src -%}{%- else -%}{%- assign gsrc = g.src | relative_url -%}{%- endif -%}
+              <button type="button" role="listitem" data-gallery-thumb data-src="{{ gsrc }}" data-alt="{{ g.alt | escape }}" class="gallery-thumb {% if forloop.first %}is-current{% endif %}" aria-label="Voir : {{ g.alt | escape }}">
+                <img src="{{ gsrc }}" alt="" loading="lazy" width="120" height="90">
+              </button>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- else %}
+        <div class="gallery-main">
+          <img src="{{ main_src }}" alt="{{ page.brand }} {{ page.name }}" width="1200" height="900" fetchpriority="high">
+        </div>
+        {%- endif %}
+      </div>
+
+      <div class="min-w-0 lg:col-span-5">
+        <p class="text-sm text-muted">{{ page.brand }}, {{ page.type_label }}</p>
+        <h1 class="mt-2 text-display-xl">{{ page.name }}</h1>
+        <p class="mt-5 text-lg leading-relaxed text-body">{{ page.lead }}</p>
+
+        {%- if page.facts %}
+        <dl class="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-line pt-6 sm:grid-cols-3">
+          {%- for f in page.facts -%}
+          <div class="fact">
+            <dt class="order-2 fact-label">{{ f.label }}</dt>
+            <dd class="order-1 fact-value {% if f.tone == 'cool' %}text-cool{% elsif f.tone == 'warm' %}text-warm{% endif %}">{{ f.value }}</dd>
+          </div>
+          {%- endfor -%}
+        </dl>
+        {%- endif %}
+
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="#devis" class="btn btn-primary">Demander un devis pour ce modèle</a>
+          {%- if page.brochure %}
+          <a href="{{ page.brochure | relative_url }}" target="_blank" rel="noopener" class="btn btn-secondary">{% include icons.html name="pdf" class="h-4 w-4" %}Brochure PDF</a>
+          {%- endif %}
+        </div>
+        <p class="mt-4 text-sm text-muted">Posé par Pilotech, {% if page.universe == 'climatisation' %}installateur agréé Toshiba{% else %}installateur VMI{% endif %} à Paris et en Île-de-France.</p>
+      </div>
+    </div>
+    <div class="thermal mt-12" data-draw aria-hidden="true"></div>
+  </section>
+
+  <!-- Point fort -->
+  {%- if page.highlight %}
+  <section class="container pb-12">
+    <div class="grid gap-6 rounded-md bg-mist p-6 md:grid-cols-12 md:p-10">
+      <p class="font-display text-2xl font-600 text-ink md:col-span-4">{{ page.highlight.title }}</p>
+      <p class="leading-relaxed text-body md:col-span-8">{{ page.highlight.text }}</p>
+    </div>
+  </section>
+  {%- endif %}
+
+  <!-- Caractéristiques + fiche technique -->
+  <section class="container pb-16">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2>Ce que ce modèle apporte</h2>
+        <ul class="mt-6 space-y-3">
+          {%- for f in page.features -%}
+          <li class="flex gap-3 text-body"><span class="mt-1 text-brand">{% include icons.html name="check" class="h-4 w-4 shrink-0" %}</span><span>{{ f }}</span></li>
+          {%- endfor -%}
+        </ul>
+        {%- if page.features_note %}<p class="mt-5 text-xs text-muted">{{ page.features_note }}</p>{% endif %}
+      </div>
+      <aside class="lg:col-span-5">
+        <div class="rounded-md border border-line p-6">
+          <h2 class="text-xl">Fiche technique</h2>
+          <table class="spec-table mt-4">
+            <tbody>
+              {%- for s in page.specs -%}
+              <tr><th scope="row">{{ s.label }}</th><td>{{ s.value }}</td></tr>
+              {%- endfor -%}
+            </tbody>
+          </table>
+          {%- if page.supplied %}
+          <div class="mt-5 flex items-center justify-between gap-4 border-t border-line pt-5">
+            <div>
+              <p class="text-xs text-muted">Fourni avec</p>
+              <p class="font-600 text-ink">{{ page.supplied.label }}</p>
+            </div>
+            {%- if page.supplied.img %}<img src="{{ page.supplied.img | relative_url }}" alt="{{ page.supplied.label }}" loading="lazy" class="h-20 w-auto object-contain">{% endif %}
+          </div>
+          {%- endif %}
+          {%- if page.energy %}
+          <div class="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
+            {%- if page.energy.heating %}<span class="class-chip class-chip-warm">{% include icons.html name="sun" class="h-3.5 w-3.5" %}Chauffage {{ page.energy.heating }}</span>{% endif %}
+            {%- if page.energy.cooling %}<span class="class-chip class-chip-cool">{% include icons.html name="snowflake" class="h-3.5 w-3.5" %}Rafraîchissement {{ page.energy.cooling }}</span>{% endif %}
+          </div>
+          {%- endif %}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Schémas d'installation -->
+  {%- if page.schemas %}
+  <section class="bg-mist py-14">
+    <div class="container">
+      <h2>Configurations d'installation</h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-2">
+        {%- for s in page.schemas -%}
+        <figure>
+          <img src="{{ s.src | relative_url }}" alt="{{ s.alt | default: s.title }}" loading="lazy" class="aspect-[4/3] w-full rounded-md bg-white object-contain">
+          <figcaption class="mt-3 font-600 text-ink">{{ s.title }}</figcaption>
+        </figure>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+  {%- endif %}
+
+  <!-- Commandes et interfaces -->
+  {%- if page.controls %}
+  <section class="container py-14">
+    <h2>Pilotage et commandes</h2>
+    <div class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
+      {%- for c in page.controls -%}
+      <figure>
+        <div class="flex h-48 items-center justify-center rounded-md border border-line bg-white p-5"><img src="{{ c.img | relative_url }}" alt="{{ c.label }}" loading="lazy" class="max-h-full max-w-full object-contain"></div>
+        <figcaption class="mt-3 text-sm font-600 text-ink">{{ c.label }}</figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+  </section>
+  {%- endif %}
+
+  <!-- Vidéo -->
+  {%- if page.video_id %}
+  <section class="container py-14">
+    <h2>{{ page.name }} en vidéo</h2>
+    <div class="video mt-8 max-w-4xl">
+      <iframe src="https://www.youtube-nocookie.com/embed/{{ page.video_id }}" title="{{ page.brand }} {{ page.name }}, présentation vidéo" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </section>
+  {%- endif %}
+
+  <!-- Texte long -->
+  {%- if content contains "<p" or content contains "<h2" %}
+  <section class="container py-14">
+    <div class="prose">{{ content }}</div>
+  </section>
+  {%- endif %}
+
+  <!-- Documentation -->
+  {%- if page.docs %}
+  <section class="bg-mist py-14">
+    <div class="container">
+      <h2>Documentation</h2>
+      <p class="mt-2 text-body">Brochures et notices du constructeur, à télécharger.</p>
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {%- for d in page.docs -%}
+        <li><a href="{{ d.href | relative_url }}" target="_blank" rel="noopener" class="flex items-center gap-4 rounded-md border border-line bg-white p-4 no-underline transition-colors hover:border-brand">
+          <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded bg-brand-light text-brand">{% include icons.html name="pdf" class="h-5 w-5" %}</span>
+          <span><span class="block font-600 text-ink">{{ d.title }}</span><span class="block text-xs text-muted">PDF{% if d.size %}, {{ d.size }}{% endif %}</span></span>
+        </a></li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </section>
+  {%- endif %}
+
+  <!-- Autres gammes du même univers -->
+  <section class="container py-14">
+    <div class="flex items-end justify-between gap-6">
+      <h2>Les autres modèles {{ page.brand }}</h2>
+      <a href="{{ u.url | relative_url }}" class="btn btn-ghost">Toutes les gammes</a>
+    </div>
+    <div class="scroll-row mt-8">
+      {%- for p in siblings -%}
+        {%- unless p.url == page.url -%}
+        <div class="w-64 shrink-0">{% include product-card.html product=p compact=true %}</div>
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </section>
+
+  {%- capture subj %}Devis {{ page.brand }} {{ page.name }} — site Pilotech{% endcapture -%}
+  {%- capture prodname %}{{ page.brand }} {{ page.name }}{% endcapture -%}
+  {% include cta.html title="Un devis pour ce modèle" subject=subj product=prodname %}
+</article>

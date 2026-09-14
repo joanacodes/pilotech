@@ -1,0 +1,65 @@
+{%- assign products = site.products | sort: "order" -%}
+<footer class="mt-auto bg-ink text-white">
+  <div class="container py-14">
+    <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <a href="{{ '/' | relative_url }}" class="inline-block rounded bg-white px-3 py-2"><img src="{{ '/assets/img/brand/pilotech-logo.png' | relative_url }}" alt="Pilotech" width="714" height="185" class="h-10 w-auto"></a>
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/75">Climatisation réversible et pompes à chaleur Toshiba, climatisation sans unité extérieure Teknopoint, ventilation par insufflation VMI. Installation, entretien et dépannage à Paris et dans toute l'Île-de-France.</p>
+        <ul class="mt-6 space-y-2 text-sm">
+          <li><a href="{{ site.company.phone_href }}" class="inline-flex items-center gap-2 hover:text-cool">{% include icons.html name="phone" class="h-4 w-4 text-white/60" %}{{ site.company.phone }}</a></li>
+          <li><a href="mailto:{{ site.company.email }}" class="inline-flex items-center gap-2 hover:text-cool">{% include icons.html name="mail" class="h-4 w-4 text-white/60" %}{{ site.company.email }}</a></li>
+          <li class="inline-flex items-center gap-2 text-white/75">{% include icons.html name="clock" class="h-4 w-4 text-white/60" %}{{ site.company.hours_label }}</li>
+        </ul>
+        <div class="mt-6 flex gap-3">
+          <a href="{{ site.company.social.instagram }}" target="_blank" rel="noopener" aria-label="Instagram" class="flex h-9 w-9 items-center justify-center rounded border border-white/20 text-white/80 hover:border-white hover:text-white">{% include icons.html name="instagram" class="h-4 w-4" %}</a>
+          <a href="{{ site.company.social.linkedin }}" target="_blank" rel="noopener" aria-label="LinkedIn" class="flex h-9 w-9 items-center justify-center rounded border border-white/20 text-white/80 hover:border-white hover:text-white">{% include icons.html name="linkedin" class="h-4 w-4" %}</a>
+        </div>
+      </div>
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-lg font-600 text-white">Climatisation Toshiba</h2>
+        <ul class="mt-4 space-y-2 text-sm text-white/75">
+          {%- assign clim = products | where: "universe", "climatisation" -%}
+          {%- for p in clim -%}<li><a href="{{ p.url | relative_url }}" class="hover:text-white">{{ p.name }}</a></li>{%- endfor -%}
+          <li class="pt-1"><a href="{{ '/climatisation/' | relative_url }}" class="text-cool hover:text-white">Toutes les gammes</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-lg font-600 text-white">Sans unité extérieure</h2>
+        <ul class="mt-4 space-y-2 text-sm text-white/75">
+          {%- assign inv = products | where: "universe", "invisible" -%}
+          {%- for p in inv -%}<li><a href="{{ p.url | relative_url }}" class="hover:text-white">{{ p.name }}</a></li>{%- endfor -%}
+          <li class="pt-1"><a href="{{ '/climatisation-invisible/' | relative_url }}" class="text-cool hover:text-white">Toutes les solutions</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-lg font-600 text-white">Ventilation VMI</h2>
+        <ul class="mt-4 space-y-2 text-sm text-white/75">
+          {%- assign vent = products | where: "universe", "ventilation" -%}
+          {%- for p in vent -%}<li><a href="{{ p.url | relative_url }}" class="hover:text-white">{{ p.name }}</a></li>{%- endfor -%}
+          <li class="pt-1"><a href="{{ '/ventilation/' | relative_url }}" class="text-cool hover:text-white">Tous les modèles</a></li>
+        </ul>
+      </div>
+      <div class="lg:col-span-2">
+        <h2 class="font-display text-lg font-600 text-white">Pilotech</h2>
+        <ul class="mt-4 space-y-2 text-sm text-white/75">
+          <li><a href="{{ '/services/' | relative_url }}" class="hover:text-white">Nos services</a></li>
+          <li><a href="{{ '/services/climatisation-residentielle/' | relative_url }}" class="hover:text-white">Climatisation résidentielle</a></li>
+          <li><a href="{{ '/services/pompes-a-chaleur/' | relative_url }}" class="hover:text-white">Pompes à chaleur</a></li>
+          <li><a href="{{ '/services/ventilation-vmi/' | relative_url }}" class="hover:text-white">Ventilation par insufflation</a></li>
+          <li><a href="{{ '/services/solutions-professionnelles/' | relative_url }}" class="hover:text-white">Solutions professionnelles</a></li>
+          <li><a href="{{ '/services/entretien-depannage/' | relative_url }}" class="hover:text-white">Entretien et dépannage</a></li>
+          <li><a href="{{ '/a-propos/' | relative_url }}" class="hover:text-white">À propos</a></li>
+          <li><a href="{{ '/contact/' | relative_url }}" class="hover:text-white">Contact et devis</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-col gap-3 border-t border-white/15 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
+      <p>© {{ 'now' | date: "%Y" }} {{ site.company.name }}. Installateur agréé Toshiba, partenaire Teknopoint et installateur VMI en Île-de-France.</p>
+      <p class="flex flex-wrap gap-x-5 gap-y-1">
+        <a href="{{ '/mentions-legales/' | relative_url }}" class="hover:text-white">Mentions légales</a>
+        <a href="{{ site.company.satellites.toshiba }}" rel="noopener" class="hover:text-white">pilotech-toshiba.com</a>
+        <a href="{{ site.company.satellites.vmi }}" rel="noopener" class="hover:text-white">pilotech-vmi.fr</a>
+      </p>
+    </div>
+  </div>
+</footer>

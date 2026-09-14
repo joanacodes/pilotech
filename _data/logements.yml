@@ -1,0 +1,50 @@
+# « Par type de logement » : la raison d'être du site unifié.
+# Chaque situation renvoie vers les gammes pertinentes des deux univers.
+- id: appartement
+  label: "Appartement à Paris"
+  summary: "Copropriété, façade contrainte, pas de combles : il faut des unités discrètes et une pose propre."
+  climatisation:
+    note: "Muraux silencieux, un seul groupe extérieur pour plusieurs pièces."
+    products: [shorai-edge, mural-yukai, mural-haori]
+  invisible:
+    note: "Façade classée ou copropriété stricte : rien à l'extérieur."
+    products: [elfo-monosplit, idra-next-monosplit, moka]
+  ventilation:
+    note: "Centrales sans combles, un seul carottage."
+    products: [wally, cube, urban-2]
+- id: maison
+  label: "Maison avec combles"
+  summary: "Les combles servent de local technique : gainable invisible côté climatisation, distribution par pièce côté ventilation."
+  climatisation:
+    note: "Le gainable disparaît dans les combles, seules les grilles restent visibles."
+    products: [gainable-standard, gainable-compact, super-heating]
+  invisible:
+    note: "Plusieurs pièces depuis une seule centrale intérieure."
+    products: [elfo-multisplit, idra-next-multisplit]
+  ventilation:
+    note: "Purevent distribue l'air neuf pièce par pièce ; Lofty assainit les combles eux-mêmes."
+    products: [purevent, lofty]
+- id: sous-sol
+  label: "Cave, sous-sol ou garage"
+  summary: "Humidité, odeurs et moisissures dans un espace enterré : la ventilation passe avant tout."
+  ventilation:
+    note: "Une centrale conçue pour les locaux enterrés, entièrement autonome."
+    products: [cave]
+  climatisation:
+    note: "Pour une pièce aménagée en sous-sol, une console au sol remplace des radiateurs."
+    products: [console-double-flux]
+  invisible:
+    note: "Une cave à vin tenue à température et à hygrométrie constantes."
+    products: [cave-a-vin]
+- id: professionnel
+  label: "Bureau, commerce ou ERP"
+  summary: "Confort homogène sur de grands plateaux, air conforme aux obligations des établissements recevant du public."
+  climatisation:
+    note: "Gainable avec zoning ou multisplit selon le faux plafond disponible."
+    products: [gainable-standard, console-double-flux, mural-naka]
+  invisible:
+    note: "Boutiques et bureaux sans droit de façade : VRF jusqu'à neuf unités intérieures."
+    products: [elfo-vrf, piccolo, idra-eco-multisplit]
+  ventilation:
+    note: "Jusqu'à 1 000 m³/h, régulation CO2 et raccordement Modbus."
+    products: [pro-1000]

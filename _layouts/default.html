@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang }}">
+<head>
+  {% include head.html %}
+</head>
+<body class="min-h-screen flex flex-col">
+  <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-ink">Aller au contenu</a>
+  {% include header.html %}
+  {% include breadcrumb.html %}
+  <main id="contenu" class="flex-1">{{ content }}</main>
+  {% include footer.html %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
+</html>

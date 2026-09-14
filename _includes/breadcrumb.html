@@ -1,0 +1,23 @@
+{%- if page.url != '/' and page.no_breadcrumb != true -%}
+<nav aria-label="Fil d'Ariane" class="border-b border-line bg-mist">
+  <div class="container">
+    <ol class="flex flex-wrap items-center gap-x-2 py-2.5 text-xs text-muted sm:text-sm">
+      <li><a href="{{ '/' | relative_url }}" class="hover:text-ink">Accueil</a></li>
+      {%- if page.layout == 'product' -%}
+        {%- assign u = site.universes[page.universe] -%}
+        <li aria-hidden="true">{% include icons.html name="chevron-right" class="h-3 w-3 text-line" %}</li>
+        <li><a href="{{ u.url | relative_url }}" class="hover:text-ink">{{ u.name }}</a></li>
+        <li aria-hidden="true">{% include icons.html name="chevron-right" class="h-3 w-3 text-line" %}</li>
+        <li class="font-500 text-ink" aria-current="page">{{ page.name }}</li>
+      {%- else -%}
+        {%- if page.parent -%}
+        <li aria-hidden="true">{% include icons.html name="chevron-right" class="h-3 w-3 text-line" %}</li>
+        <li><a href="{{ page.parent.url | relative_url }}" class="hover:text-ink">{{ page.parent.title }}</a></li>
+        {%- endif -%}
+        <li aria-hidden="true">{% include icons.html name="chevron-right" class="h-3 w-3 text-line" %}</li>
+        <li class="font-500 text-ink" aria-current="page">{{ page.breadcrumb | default: page.title }}</li>
+      {%- endif -%}
+    </ol>
+  </div>
+</nav>
+{%- endif -%}

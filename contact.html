@@ -1,0 +1,29 @@
+---
+layout: default
+title: "Contact et devis gratuit à Paris et en IDF | Pilotech"
+description: "Demandez un devis gratuit pour une climatisation Toshiba, une pompe à chaleur ou une ventilation VMI en Île-de-France. Réponse sous 24 h, visite offerte."
+permalink: /contact/
+breadcrumb: "Contact"
+image: /assets/img/climatisation/console-front.jpg
+---
+<section class="container py-12 lg:py-16">
+  <div class="grid gap-10 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <h1 class="text-display-xl">Demander un devis</h1>
+      <p class="mt-6 text-lg leading-relaxed text-body">Un projet de climatisation, de chauffage ou de ventilation ? Décrivez-nous le lieu, nous revenons vers vous sous 24 heures ouvrées avec une première estimation et une proposition de visite.</p>
+      <dl class="mt-8 space-y-5 border-t border-line pt-6 text-sm">
+        <div class="flex gap-4"><dt class="w-28 shrink-0 text-muted">Téléphone</dt><dd><a href="{{ site.company.phone_href }}" class="font-600 text-ink">{{ site.company.phone }}</a></dd></div>
+        <div class="flex gap-4"><dt class="w-28 shrink-0 text-muted">E-mail</dt><dd><a href="mailto:{{ site.company.email }}" class="font-600 text-ink">{{ site.company.email }}</a></dd></div>
+        <div class="flex gap-4"><dt class="w-28 shrink-0 text-muted">Horaires</dt><dd class="text-body">{{ site.company.hours_label }}</dd></div>
+        <div class="flex gap-4"><dt class="w-28 shrink-0 text-muted">Secteur</dt><dd class="text-body">Paris, Hauts-de-Seine, Seine-Saint-Denis, Val-de-Marne, Yvelines, Essonne, Val-d'Oise, Seine-et-Marne</dd></div>
+        <div class="flex gap-4"><dt class="w-28 shrink-0 text-muted">Avis</dt><dd class="text-body">{{ site.company.rating }}/5 sur {{ site.company.reviews_label }}</dd></div>
+      </dl>
+    </div>
+    <div class="rounded-md border border-line p-6 lg:col-span-7 lg:p-8">
+      <h2 class="text-xl">Votre demande</h2>
+      <p class="mt-1 mb-6 text-sm text-muted">Tous les champs sont utiles pour vous répondre précisément. Vos données servent uniquement à traiter cette demande.</p>
+      {% include form-devis.html id="contact" subject="Demande de devis — page contact — site Pilotech" %}
+    </div>
+  </div>
+</section>
+{% include reviews.html count=3 %}

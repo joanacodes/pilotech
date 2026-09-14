@@ -1,0 +1,114 @@
+# ==========================================================================
+#  Pilotech — site unifié (climatisation Toshiba + ventilation VMI)
+#  Jekyll, compatible GitHub Pages sans étape de build côté serveur
+#  (le CSS Tailwind est précompilé dans assets/css/site.css).
+# ==========================================================================
+
+title: Pilotech
+tagline: Climatisation, climatisation invisible, pompes à chaleur et ventilation en Île-de-France
+description: >-
+  Pilotech installe et entretient les climatisations réversibles et pompes à chaleur
+  Toshiba, les climatisations sans unité extérieure Teknopoint et les ventilations par
+  insufflation VMI à Paris et en Île-de-France. Étude gratuite, devis sous 24 h ouvrées.
+
+# À CONFIRMER : nom de domaine définitif du site unifié.
+url: "https://pilotech.eu"
+baseurl: ""
+lang: fr
+timezone: Europe/Paris
+
+# ---- Coordonnées (une seule source de vérité, utilisée partout) ----
+company:
+  name: Pilotech
+  legal_name: Pilotech
+  phone: "01 85 44 12 53"
+  phone_href: "tel:+33185441253"
+  phone_intl: "+33185441253"
+  email: "info.pilotech@gmail.com"
+  rating: "5"
+  reviews_count: "82"
+  reviews_label: "82 avis Google"
+  area: "Paris et Île-de-France"
+  city: "Sucy-en-Brie"           # siège (fiche Google Business « Pilotech, Sucy ») — à confirmer
+  postal_code: "94370"
+  hours_label: "Lundi – vendredi, 9 h – 18 h"
+  founder: "Fabrice Gibier-Zlotnitzky"
+  social:
+    instagram: "https://instagram.com/pilotech.eu"
+    linkedin: "https://www.linkedin.com/in/fabrice-gibier-zlotnitzky-75b44a135/"
+  # Sites satellites (SEO) : conservés pour les liens croisés (footer, sameAs).
+  satellites:
+    toshiba: "https://pilotech-toshiba.com"
+    vmi: "https://pilotech-vmi.fr"
+    invisible: "https://www.pilotech.eu"   # site Squarespace actuel (Teknopoint)
+
+# ---- Formulaires : FormSubmit (aucun backend requis) ----
+# Au premier envoi, FormSubmit envoie un e-mail de confirmation à cette adresse.
+forms:
+  destinataire: "info.pilotech@gmail.com"
+  endpoint_base: "https://formsubmit.co/"
+
+# ---- Navigation principale ----
+nav:
+  - { title: "Climatisation Toshiba", url: "/climatisation/", menu: climatisation }
+  - { title: "Climatisation invisible", url: "/climatisation-invisible/", menu: invisible }
+  - { title: "Ventilation VMI", url: "/ventilation/", menu: ventilation }
+  - { title: "Services", url: "/services/" }
+  - { title: "À propos", url: "/a-propos/" }
+  - { title: "Contact", url: "/contact/" }
+
+# ---- Les deux univers produits ----
+universes:
+  climatisation:
+    name: "Climatisation & chauffage"
+    short: "Climatisation"
+    brand: "Toshiba"
+    url: "/climatisation/"
+    intro: "Dix gammes Toshiba, du mural silencieux au gainable invisible, installées par un installateur agréé."
+  invisible:
+    name: "Climatisation sans unité extérieure"
+    short: "Climatisation invisible"
+    brand: "Teknopoint"
+    url: "/climatisation-invisible/"
+    intro: "Douze solutions Teknopoint sans groupe extérieur : rien en façade, pour les immeubles classés, les copropriétés strictes et les centres historiques."
+  ventilation:
+    name: "Ventilation par insufflation"
+    short: "Ventilation"
+    brand: "VMI"
+    url: "/ventilation/"
+    intro: "Sept centrales VMI fabriquées en France pour assainir un appartement, une maison, une cave ou un établissement recevant du public."
+
+# ---- Collections ----
+collections:
+  products:
+    output: true
+    sort_by: order
+
+defaults:
+  - scope: { path: "", type: "products" }
+    values: { layout: product }
+  - scope: { path: "" }
+    values: { layout: default }
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+future: false
+
+plugins: []
+
+exclude:
+  - README.md
+  - CONTENT-REVIEW.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
+  - src
+  - scripts
+  - tailwind.config.js
+  - vendor
+  - .bundle
+  - _site

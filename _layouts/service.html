@@ -1,0 +1,95 @@
+---
+layout: default
+---
+{%- assign products = site.products | sort: "order" -%}
+<section class="container py-12 lg:py-16">
+  <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+    <div class="lg:col-span-7">
+      <p class="text-sm text-muted">Services Pilotech</p>
+      <h1 class="mt-2 text-display-xl">{{ page.heading | default: page.title }}</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-body">{{ page.lead }}</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#devis" class="btn btn-primary">Demander un devis</a>
+        <a href="{{ site.company.phone_href }}" class="btn btn-secondary">{% include icons.html name="phone" class="h-4 w-4" %}{{ site.company.phone }}</a>
+      </div>
+    </div>
+    {%- if page.image %}
+    <figure class="lg:col-span-5">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: page.heading }}" width="1200" height="800" class="w-full rounded-md object-cover" fetchpriority="high">
+    </figure>
+    {%- endif %}
+  </div>
+  <div class="thermal mt-12" data-draw aria-hidden="true"></div>
+</section>
+
+{%- for s in page.sections %}
+{%- assign odd = forloop.index | modulo: 2 -%}
+<section class="{% if odd == 0 %}bg-mist{% endif %} py-12 lg:py-14">
+  <div class="container">
+    <div class="grid gap-8 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <h2>{{ s.title }}</h2>
+        {%- if s.text %}<p class="mt-3 text-body">{{ s.text }}</p>{% endif %}
+      </div>
+      <div class="lg:col-span-8">
+        {%- if s.items %}
+        <div class="grid gap-6 sm:grid-cols-2">
+          {%- for it in s.items -%}
+          <div class="border-t border-line pt-4">
+            <h3 class="text-lg">{{ it.title }}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-body">{{ it.text }}</p>
+            {%- if it.link %}<a href="{{ it.link | relative_url }}" class="mt-2 inline-block text-sm font-600 text-brand">{{ it.link_label | default: "En savoir plus" }}</a>{% endif %}
+          </div>
+          {%- endfor -%}
+        </div>
+        {%- endif %}
+        {%- if s.steps %}
+        <ol class="steps space-y-6" data-steps>
+          {%- for st in s.steps -%}
+          <li class="step flex gap-5" data-step>
+            <span class="step-dot">{{ forloop.index }}</span>
+            <div><h3 class="text-lg">{{ st.title }}</h3><p class="mt-1 text-sm leading-relaxed text-body">{{ st.text }}</p></div>
+          </li>
+          {%- endfor -%}
+        </ol>
+        {%- endif %}
+        {%- if s.body %}<div class="prose">{{ s.body | markdownify }}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{%- endfor %}
+
+{%- if page.related %}
+<section class="container py-12">
+  <h2>Les gammes concernées</h2>
+  <div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+    {%- for slug in page.related -%}
+      {%- for p in products -%}
+        {%- if p.slug == slug %}{% include product-card.html product=p compact=true %}{% endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif %}
+
+{%- if page.faq_groups %}
+<section class="container py-12" aria-labelledby="faq-titre">
+  <h2 id="faq-titre">Questions fréquentes</h2>
+  <div class="mt-6 max-w-3xl divide-y divide-line border-y border-line">
+    {%- for g in page.faq_groups -%}
+    {%- for item in site.data.faq[g] -%}
+    <details class="group py-4">
+      <summary class="flex cursor-pointer items-center justify-between gap-4 font-600 text-ink">{{ item.q }}<span class="shrink-0 text-muted transition group-open:rotate-180">{% include icons.html name="chevron-down" class="h-4 w-4" %}</span></summary>
+      <p class="mt-3 max-w-prose leading-relaxed text-body">{{ item.a }}</p>
+    </details>
+    {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{%- endif %}
+
+{{ content }}
+
+{%- capture subj %}Demande de devis — {{ page.service_name }} — site Pilotech{% endcapture -%}
+{% include cta.html title=page.cta_title text=page.cta_text subject=subj %}

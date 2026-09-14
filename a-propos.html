@@ -1,0 +1,76 @@
+---
+layout: default
+title: "À propos de Pilotech, installateur Toshiba et VMI en IDF"
+description: "Entreprise francilienne d'installation de climatisation, pompes à chaleur et ventilation par insufflation. Techniciens salariés, visite avant devis."
+permalink: /a-propos/
+breadcrumb: "À propos"
+image: /assets/img/climatisation/daiseikai-10-toshiba-livingroom-2.jpg
+faq_groups: [climatisation, invisible, ventilation]
+---
+<section class="container py-12 lg:py-16">
+  <div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+    <div class="lg:col-span-7">
+      <h1 class="text-display-xl">Une entreprise d'installateurs, pas un intermédiaire</h1>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-body">Pilotech est dirigée par {{ site.company.founder }}, qui se déplace lui-même pour les visites techniques. Basée à Sucy-en-Brie, l'entreprise réalise ses chantiers avec ses propres techniciens, en climatisation comme en ventilation, à Paris et dans les huit départements d'Île-de-France.</p>
+    </div>
+    <figure class="lg:col-span-5">
+      <img src="{{ '/assets/img/climatisation/daiseikai-10-toshiba-livingroom-2.jpg' | relative_url }}" alt="Mural Toshiba installé dans un salon" width="803" height="535" class="w-full rounded-md object-cover" fetchpriority="high">
+    </figure>
+  </div>
+  <div class="thermal mt-12" data-draw aria-hidden="true"></div>
+</section>
+
+<section class="container pb-16">
+  <div class="grid gap-8 md:grid-cols-3">
+    <div class="border-t border-line pt-5">
+      <h2 class="text-xl">Trois marques, choisies pour durer</h2>
+      <p class="mt-3 text-sm leading-relaxed text-body">Installateur agréé Toshiba pour la climatisation et les pompes à chaleur air-air ; partenaire Teknopoint pour la climatisation sans unité extérieure ; installateur VMI, le fabricant français de la ventilation par insufflation. Trois catalogues, pour ne proposer que ce qui correspond au lieu.</p>
+    </div>
+    <div class="border-t border-line pt-5">
+      <h2 class="text-xl">La visite avant le chiffre</h2>
+      <p class="mt-3 text-sm leading-relaxed text-body">Nous ne remettons pas de devis sans avoir vu le logement : les passages de liaisons, la place du groupe extérieur, la hauteur d'un faux plafond ou l'emplacement d'un carottage décident du résultat autant que l'appareil.</p>
+    </div>
+    <div class="border-t border-line pt-5">
+      <h2 class="text-xl">Un chantier propre</h2>
+      <p class="mt-3 text-sm leading-relaxed text-body">Protections au sol, découpes soignées, raccords dissimulés, nettoyage en fin d'intervention. C'est ce que nos clients décrivent le plus souvent dans leurs avis, et ce à quoi nous tenons.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-mist py-16">
+  <div class="container grid gap-10 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <h2>Nous joindre</h2>
+      <p class="mt-3 text-body">Trois façons de démarrer, selon ce qui vous arrange.</p>
+    </div>
+    <ol class="steps space-y-6 lg:col-span-7" data-steps>
+      <li class="step flex gap-5" data-step><span class="step-dot">1</span><div><h3 class="text-lg">Par téléphone</h3><p class="mt-1 text-sm text-body">Au <a href="{{ site.company.phone_href }}" class="font-600 text-ink">{{ site.company.phone }}</a>, du lundi au vendredi de 9 h à 18 h, pour un premier échange sur votre projet.</p></div></li>
+      <li class="step flex gap-5" data-step><span class="step-dot">2</span><div><h3 class="text-lg">Par le formulaire</h3><p class="mt-1 text-sm text-body">Décrivez le logement, le nombre de pièces ou le problème d'humidité : nous vous rappelons sous 24 heures ouvrées.</p></div></li>
+      <li class="step flex gap-5" data-step><span class="step-dot">3</span><div><h3 class="text-lg">Par une visite</h3><p class="mt-1 text-sm text-body">Gratuite et sans engagement, à Paris et dans toute l'Île-de-France. C'est à partir d'elle que nous chiffrons.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+{% include reviews.html count=9 %}
+
+<section class="container py-16" aria-labelledby="faq-titre">
+  <h2 id="faq-titre">Les questions que l'on nous pose</h2>
+  <div class="mt-8 grid gap-10 lg:grid-cols-3">
+    {%- assign universe_keys = "climatisation,invisible,ventilation" | split: "," -%}
+    {%- for key in universe_keys -%}
+    <div>
+      <h3 class="text-lg">{{ site.universes[key].name }}</h3>
+      <div class="mt-3 divide-y divide-line border-y border-line">
+        {%- for item in site.data.faq[key] -%}
+        <details class="group py-4">
+          <summary class="flex cursor-pointer items-center justify-between gap-4 font-600 text-ink">{{ item.q }}<span class="shrink-0 text-muted transition group-open:rotate-180">{% include icons.html name="chevron-down" class="h-4 w-4" %}</span></summary>
+          <p class="mt-3 leading-relaxed text-body">{{ item.a }}</p>
+        </details>
+        {%- endfor -%}
+      </div>
+    </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% include cta.html subject="Demande de devis — à propos — site Pilotech" %}

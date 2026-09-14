@@ -1,0 +1,35 @@
+---
+layout: default
+title: "Services : installation, entretien, dépannage IDF | Pilotech"
+description: "Climatisation résidentielle, pompes à chaleur, ventilation par insufflation, professionnels, entretien et dépannage : ce que Pilotech réalise en IDF."
+permalink: /services/
+breadcrumb: "Services"
+image: /assets/img/climatisation/gainable-standard-photo-2-slideshow.jpg
+---
+<section class="container py-12 lg:py-16">
+  <div class="max-w-3xl">
+    <h1 class="text-display-xl">Ce que nous faisons</h1>
+    <p class="mt-6 text-lg leading-relaxed text-body">Une seule entreprise pour l'air de votre logement ou de vos locaux : rafraîchir, chauffer et ventiler, avec du matériel Toshiba, Teknopoint et VMI, posé par nos propres techniciens à Paris et dans les huit départements d'Île-de-France.</p>
+  </div>
+  <div class="thermal mt-10" data-draw aria-hidden="true"></div>
+</section>
+<section class="container pb-16">
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    {%- assign services = "climatisation-residentielle,pompes-a-chaleur,ventilation-vmi,solutions-professionnelles,entretien-depannage" | split: "," -%}
+    {%- for slug in services -%}
+      {%- assign url = "/services/" | append: slug | append: "/" -%}
+      {%- for p in site.pages -%}
+        {%- if p.url == url -%}
+        <a href="{{ p.url | relative_url }}" class="group flex flex-col rounded-md border border-line p-6 no-underline hover:border-brand">
+          {%- if p.image %}<img src="{{ p.image | relative_url }}" alt="" loading="lazy" class="aspect-[3/2] w-full rounded object-cover">{% endif %}
+          <h2 class="mt-5 text-xl group-hover:text-brand">{{ p.service_name }}</h2>
+          <p class="mt-2 flex-1 text-sm leading-relaxed text-body">{{ p.summary }}</p>
+          <span class="mt-4 text-sm font-600 text-brand">Découvrir</span>
+        </a>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+{% include reviews.html count=3 %}
+{% include cta.html subject="Demande de devis — services — site Pilotech" %}

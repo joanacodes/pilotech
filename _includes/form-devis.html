@@ -1,0 +1,71 @@
+{%- comment -%}
+  Formulaire de demande de devis (FormSubmit, sans backend).
+  Paramètres : id (préfixe unique par page), subject (objet de l'e-mail), product (nom pré-rempli, optionnel), compact (true = moins de champs)
+{%- endcomment -%}
+{%- assign id = include.id | default: "devis" -%}
+<form action="{{ site.forms.endpoint_base }}{{ site.forms.destinataire }}" method="POST" class="space-y-4" novalidate>
+  <input type="hidden" name="_subject" value="{{ include.subject | default: 'Demande de devis — site Pilotech' }}">
+  <input type="hidden" name="_next" value="{{ '/merci/' | absolute_url }}">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_autoresponse" value="Merci pour votre demande. L'équipe Pilotech vous recontacte sous 24 heures ouvrées.">
+  <input type="hidden" name="page" value="{{ page.url | absolute_url }}">
+  {%- if include.product %}<input type="hidden" name="produit" value="{{ include.product }}">{% endif %}
+  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label for="{{ id }}-nom" class="field-label">Nom et prénom</label>
+      <input id="{{ id }}-nom" name="nom" type="text" required autocomplete="name" class="field">
+    </div>
+    <div>
+      <label for="{{ id }}-tel" class="field-label">Téléphone</label>
+      <input id="{{ id }}-tel" name="telephone" type="tel" required autocomplete="tel" class="field">
+    </div>
+    <div>
+      <label for="{{ id }}-email" class="field-label">E-mail</label>
+      <input id="{{ id }}-email" name="email" type="email" required autocomplete="email" class="field">
+    </div>
+    <div>
+      <label for="{{ id }}-ville" class="field-label">Ville</label>
+      <input id="{{ id }}-ville" name="ville" type="text" required autocomplete="address-level2" placeholder="Paris, Boulogne, Versailles…" class="field">
+    </div>
+  </div>
+  {%- unless include.compact %}
+  <div class="grid gap-4 sm:grid-cols-2">
+    <div>
+      <label for="{{ id }}-besoin" class="field-label">Votre besoin</label>
+      <select id="{{ id }}-besoin" name="besoin" required class="field">
+        <option value="" disabled selected>Choisir</option>
+        <option>Climatisation réversible</option>
+        <option>Climatisation sans unité extérieure</option>
+        <option>Pompe à chaleur / chauffage</option>
+        <option>Ventilation par insufflation (VMI)</option>
+        <option>Climatisation et ventilation</option>
+        <option>Entretien ou dépannage</option>
+        <option>Local professionnel</option>
+      </select>
+    </div>
+    <div>
+      <label for="{{ id }}-logement" class="field-label">Type de lieu</label>
+      <select id="{{ id }}-logement" name="type_de_lieu" required class="field">
+        <option value="" disabled selected>Choisir</option>
+        <option>Appartement</option>
+        <option>Maison</option>
+        <option>Cave, sous-sol ou garage</option>
+        <option>Bureau, commerce ou ERP</option>
+      </select>
+    </div>
+  </div>
+  {%- endunless %}
+  <div>
+    <label for="{{ id }}-message" class="field-label">Votre projet</label>
+    <textarea id="{{ id }}-message" name="message" rows="{% if include.compact %}3{% else %}4{% endif %}" required placeholder="Surface, nombre de pièces, chauffage actuel, problème d'humidité, délais souhaités…" class="field"></textarea>
+  </div>
+  <label class="flex items-start gap-3 text-xs text-muted">
+    <input type="checkbox" name="consentement" value="oui" required class="mt-0.5 h-4 w-4 shrink-0 rounded border-line">
+    <span>J'accepte que ces informations servent à traiter ma demande. Elles ne sont jamais transmises à des tiers.</span>
+  </label>
+  <button type="submit" class="btn btn-primary w-full sm:w-auto">Envoyer ma demande</button>
+  <p class="text-xs text-muted">Réponse sous 24 heures ouvrées. Étude et devis gratuits, sans engagement.</p>
+</form>
