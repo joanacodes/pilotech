@@ -25,44 +25,61 @@ image: /assets/img/climatisation/daiseikai-10-toshiba-living-room.jpg
         <div class="fact"><dd class="order-1 fact-value">24 h</dd><dt class="order-2 fact-label">pour une première réponse</dt></div>
       </dl>
     </div>
-    <figure class="lg:col-span-6">
-      <img src="{{ '/assets/img/climatisation/daiseikai-10-toshiba-living-room.jpg' | relative_url }}" alt="Mural Toshiba Daiseikai 10 installé dans un salon, finition bois" width="803" height="535" fetchpriority="high" class="w-full rounded-md object-cover">
-      <figcaption class="mt-2 text-xs text-muted">Daiseikai 10, façade en frêne certifié, dans un séjour.</figcaption>
+    <figure class="lg:col-span-6" data-slides>
+      <div class="slides">
+        <img src="{{ '/assets/img/brand/hero-1.jpg' | relative_url }}" alt="Mural Toshiba Daiseikai 10 installé dans un salon, finition bois" width="803" height="535" fetchpriority="high" class="is-current" data-slide>
+        <img src="{{ '/assets/img/brand/hero-2.jpg' | relative_url }}" alt="Mural Toshiba Haori habillé de tissu gris dans un salon" width="1200" height="800" loading="lazy" data-slide>
+        <img src="{{ '/assets/img/brand/hero-3.jpg' | relative_url }}" alt="Mural Toshiba Naka dans un salon au mur vert" width="1200" height="800" loading="lazy" data-slide>
+      </div>
+      <div class="mt-2 flex items-center justify-between gap-4">
+        <figcaption class="text-xs text-muted">
+          <span class="slides-caption is-current" data-caption>Daiseikai 10, façade en frêne certifié, dans un séjour.</span>
+          <span class="slides-caption" data-caption>Haori, habillage textile gris, dans un salon.</span>
+          <span class="slides-caption" data-caption>Naka, mural blanc, dans un salon.</span>
+        </figcaption>
+        <div class="flex shrink-0 gap-1.5" role="group" aria-label="Photos">
+          <button type="button" class="slide-dot is-current" data-dot="0" aria-label="Photo 1"></button>
+          <button type="button" class="slide-dot" data-dot="1" aria-label="Photo 2"></button>
+          <button type="button" class="slide-dot" data-dot="2" aria-label="Photo 3"></button>
+        </div>
+      </div>
     </figure>
   </div>
-  <div class="thermal mt-12" data-draw aria-hidden="true"></div>
 </section>
 
 <!-- Les deux univers -->
 <section class="container pb-16 lg:pb-20" aria-labelledby="univers-titre">
-  <h2 id="univers-titre" class="sr-only">Nos deux univers</h2>
+  <div class="mb-8 flex items-center gap-5 lg:mb-10">
+    <h2 id="univers-titre" class="shrink-0 font-display text-2xl font-600 text-ink">3 solutions</h2>
+    <div class="thermal flex-1" data-draw aria-hidden="true"></div>
+  </div>
   <div class="grid gap-6 lg:grid-cols-3">
     {%- assign universe_keys = "climatisation,invisible,ventilation" | split: "," -%}
     {%- for key in universe_keys -%}
     {%- assign u = site.universes[key] -%}
     {%- if key == "climatisation" %}{% assign list = clim %}{% elsif key == "invisible" %}{% assign list = inv %}{% else %}{% assign list = vent %}{% endif -%}
-    <div class="flex flex-col rounded-md border border-line p-6 lg:p-8">
+    <div class="universe-card flex flex-col p-6 lg:p-8">
       <div class="flex items-start justify-between gap-4">
         <div>
-          <p class="text-sm text-muted">{{ list.size }} gammes {{ u.brand }}</p>
-          <h3 class="mt-1 font-display text-display-md font-600">{{ u.name }}</h3>
+          <p class="text-sm text-white/70">{{ list.size }} gammes {{ u.brand }}</p>
+          <h3 class="mt-1 font-display text-display-md font-600 text-white">{{ u.name }}</h3>
         </div>
-        <span class="{% if key == 'climatisation' %}text-cool{% elsif key == 'invisible' %}text-ink{% else %}text-brand{% endif %}">{% if key == 'climatisation' %}{% include icons.html name="snowflake" class="h-8 w-8" %}{% elsif key == 'invisible' %}{% include icons.html name="eye-off" class="h-8 w-8" %}{% else %}{% include icons.html name="wind" class="h-8 w-8" %}{% endif %}</span>
+        <span class="text-white">{% if key == 'climatisation' %}{% include icons.html name="snowflake" class="h-8 w-8" %}{% elsif key == 'invisible' %}{% include icons.html name="eye-off" class="h-8 w-8" %}{% else %}{% include icons.html name="wind" class="h-8 w-8" %}{% endif %}</span>
       </div>
-      <p class="mt-3 text-body">{{ u.intro }}</p>
+      <p class="mt-3 text-white/85">{{ u.intro }}</p>
       <ul class="mt-6 grid grid-cols-4 gap-3">
         {%- for p in list limit: 4 -%}
         <li>
           {%- if p.image contains "http" -%}{%- assign src = p.image -%}{%- else -%}{%- assign src = p.image | relative_url -%}{%- endif -%}
           <a href="{{ p.url | relative_url }}" class="group block no-underline" title="{{ p.brand }} {{ p.name }}">
             <span class="flex h-16 items-center justify-center rounded bg-tile p-2"><img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain"></span>
-            <span class="mt-1.5 block truncate text-xs text-body group-hover:text-brand">{{ p.name }}</span>
+            <span class="mt-1.5 block truncate text-xs text-white/85 group-hover:text-white">{{ p.name }}</span>
           </a>
         </li>
         {%- endfor -%}
       </ul>
       <div class="mt-auto pt-6">
-        <a href="{{ u.url | relative_url }}" class="btn btn-secondary">Voir les {{ list.size }} gammes {{ u.brand }}</a>
+        <a href="{{ u.url | relative_url }}" class="btn btn-on-dark">Voir les {{ list.size }} gammes {{ u.brand }}</a>
       </div>
     </div>
     {%- endfor -%}

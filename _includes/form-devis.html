@@ -3,9 +3,9 @@
   Paramètres : id (préfixe unique par page), subject (objet de l'e-mail), product (nom pré-rempli, optionnel), compact (true = moins de champs)
 {%- endcomment -%}
 {%- assign id = include.id | default: "devis" -%}
-<form action="{{ site.forms.endpoint_base }}{{ site.forms.destinataire }}" method="POST" class="space-y-4" novalidate>
+<form action="{{ site.forms.endpoint_base }}{{ site.forms.destinataire }}" method="POST" class="space-y-4" novalidate data-formsubmit>
   <input type="hidden" name="_subject" value="{{ include.subject | default: 'Demande de devis — site Pilotech' }}">
-  <input type="hidden" name="_next" value="{{ '/merci/' | absolute_url }}">
+  <input type="hidden" name="_next" value="{{ '/merci/' | absolute_url }}" data-path="{{ '/merci/' | relative_url }}">
   <input type="hidden" name="_template" value="table">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_autoresponse" value="Merci pour votre demande. L'équipe Pilotech vous recontacte sous 24 heures ouvrées.">

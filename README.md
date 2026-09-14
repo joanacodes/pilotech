@@ -75,9 +75,17 @@ Le produit apparaît automatiquement dans les menus, le footer, les catalogues, 
 Pour l'afficher dans le sélecteur de l'accueil ou les tableaux comparatifs, ajouter son `slug` dans `_data/logements.yml`
 et dans le bloc `compare` de `climatisation/index.html` ou `ventilation/index.html`.
 
-**Formulaires** : envoyés par FormSubmit à l'adresse `forms.destinataire` de `_config.yml`. Au tout premier envoi,
-FormSubmit demande de confirmer l'adresse par e-mail (une seule fois). Les réponses arrivent dans la boîte mail, la page
-`/merci/` est affichée au visiteur.
+**Formulaires (FormSubmit)** : les demandes de devis sont envoyées par https://formsubmit.co à l'adresse
+`forms.destinataire` de `_config.yml` (aucun serveur, aucun compte à créer).
+
+1. *Activation, une seule fois* : dès le premier envoi réel depuis le site en ligne, FormSubmit envoie un e-mail
+   « Activate form » à cette adresse. Il faut cliquer le lien ; tant que ce n'est pas fait, rien n'est transmis.
+2. Après activation, FormSubmit fournit une chaîne aléatoire équivalente à l'adresse (dans l'e-mail d'activation) :
+   la recopier dans `forms.destinataire` pour ne plus exposer l'adresse aux robots.
+3. L'envoi se fait en arrière-plan (le visiteur reste sur la page et voit un message de confirmation). Si le
+   JavaScript est indisponible, le formulaire est envoyé classiquement et FormSubmit redirige vers `/merci/`.
+   Chaque e-mail reçu contient tous les champs, la page d'origine et, pour une fiche produit, le modèle concerné.
+   Un accusé de réception automatique est envoyé au prospect (`_autoresponse` dans `_includes/form-devis.html`).
 
 ## Construire
 
@@ -107,8 +115,12 @@ Le fichier `assets/css/site.css` doit être commité : GitHub Pages ne lance pas
   le réglage du système. Les couleurs sont des variables CSS définies dans `src/input.css` (`:root` = clair, `.dark` =
   sombre) : pour ajuster une teinte, modifier la variable, pas les gabarits. Les visuels produits gardent un fond
   clair (`bg-tile`) car les photos constructeur sont sur fond blanc.
+- **Diaporama de l'accueil** : trois photos `assets/img/brand/hero-1.jpg`, `hero-2.jpg`, `hero-3.jpg` (format 3:2),
+  fondu toutes les 4,5 s, pause au survol, désactivé si l'utilisateur a réduit les animations. Légendes et photos
+  dans `index.html` (bloc `data-slides`).
+- **Cartes « 3 solutions »** : classe `.universe-card` dans `src/input.css` (bleu Pilotech, halo orange en bas à gauche).
 - **Préchargeur** : `_layouts/default.html` + classe `.preloader` dans `src/input.css`. Photo `assets/img/brand/preloader.jpg`
-  sous un voile bleu Pilotech ; affiché une fois par session, retiré au chargement (au plus 3,5 s). Pour changer la
+  sous un voile bleu Pilotech ; affiché une fois par session, retiré au chargement (1,4 s minimum, 4 s au plus). Pour changer la
   photo, remplacer le fichier (1920 px de large suffit) ; pour l'opacité du voile, les deux `rgba(…, .84)`.
 - **Logo** : `assets/img/brand/pilotech-logo.png` (fond clair) et `pilotech-logo-dark.png` (fond sombre, préchargeur,
   footer). Les deux sont affichés dans l'en-tête et Tailwind masque celui qui ne correspond pas au thème.

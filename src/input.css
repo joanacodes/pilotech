@@ -163,6 +163,28 @@
   .field-label { @apply mb-1.5 block text-sm font-500 text-ink; }
 }
 
+/* ---- Cartes des trois univers : bleu Pilotech, halo orange depuis l'angle inférieur gauche (couleurs du filet), même rendu en mode sombre ---- */
+.universe-card { position: relative; overflow: hidden; border-radius: 6px; color: #fff;
+  background-color: #14213D;
+  background-image:
+    radial-gradient(70% 55% at 0% 100%, rgba(226,98,43,.78) 0%, rgba(226,98,43,.32) 45%, rgba(226,98,43,0) 100%),
+    radial-gradient(60% 45% at 100% 0%, rgba(4,135,241,.22) 0%, rgba(4,135,241,0) 100%),
+    linear-gradient(165deg, #294D7C 0%, #1B3358 45%, #14213D 100%); }
+.dark .universe-card { box-shadow: inset 0 0 0 1px rgba(255,255,255,.09); }
+.btn-on-dark { @apply btn; background: #fff; color: #14213D; }
+.btn-on-dark:hover { background: #E3F1FE; }
+
+/* ---- Diaporama de l'accueil : fondu enchaîné entre trois photos ---- */
+.slides { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 3 / 2; background: rgb(var(--c-mist)); }
+.slides img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04);
+  transition: opacity 1.3s ease, transform 6.5s linear; }
+.slides img.is-current { opacity: 1; transform: scale(1); }
+.slides-caption { display: none; }
+.slides-caption.is-current { display: inline; }
+.slide-dot { width: 8px; height: 8px; border-radius: 9999px; background: rgb(var(--c-line)); transition: background .3s, transform .3s; }
+.slide-dot.is-current { background: rgb(var(--c-brand)); transform: scale(1.25); }
+@media (prefers-reduced-motion: reduce) { .slides img { transition: opacity .01s; transform: none; } }
+
 /* ---- Préchargeur : photo de salon sous un voile bleu Pilotech, logo et filet thermique ---- */
 .preloader { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
   background-color: #14213D;

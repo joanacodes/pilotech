@@ -143,14 +143,52 @@
     });
   }
 
-  /* Formulaires : validation native avec messages en français */
+  /* Diaporama de l'accueil : fondu toutes les 4,5 s, pause au survol, points cliquables */
+  function initSlides() {
+    var root = document.querySelector("[data-slides]");
+    if (!root) return;
+    var slides = Array.prototype.slice.call(root.querySelectorAll("[data-slide]"));
+    var caps = Array.prototype.slice.call(root.querySelectorAll("[data-caption]"));
+    var dots = Array.prototype.slice.call(root.querySelectorAll("[data-dot]"));
+    if (slides.length < 2) return;
+    var index = 0, timer = null;
+    function show(n) {
+      index = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle("is-current", k === index); });
+      caps.forEach(function (c, k) { c.classList.toggle("is-current", k === index); });
+      dots.forEach(function (d, k) { d.classList.toggle("is-current", k === index); d.setAttribute("aria-current", k === index ? "true" : "false"); });
+    }
+    function start() { if (reduce || timer) return; timer = window.setInterval(function () { show(index + 1); }, 4500); }
+    function stop() { window.clearInterval(timer); timer = null; }
+    dots.forEach(function (d) { d.addEventListener("click", function () { show(parseInt(d.getAttribute("data-dot"), 10)); stop(); start(); }); });
+    root.addEventListener("mouseenter", stop); root.addEventListener("mouseleave", start);
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+    start();
+  }
+
+  /* Formulaires : validation en français, envoi FormSubmit en arrière-plan (repli : envoi classique) */
   function initForms() {
     document.querySelectorAll("form[novalidate]").forEach(function (form) {
+      var next = form.querySelector('input[name="_next"]');
+      if (next && next.getAttribute("data-path")) next.value = window.location.origin + next.getAttribute("data-path");
       form.addEventListener("submit", function (e) {
-        if (form.checkValidity()) return;
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          var first = form.querySelector(":invalid");
+          if (first) { first.focus(); first.reportValidity(); }
+          return;
+        }
+        if (!form.hasAttribute("data-formsubmit") || !window.fetch || !window.FormData) return;
         e.preventDefault();
-        var first = form.querySelector(":invalid");
-        if (first) { first.focus(); first.reportValidity(); }
+        var btn = form.querySelector('button[type="submit"]'), label = btn ? btn.textContent : "";
+        if (btn) { btn.disabled = true; btn.textContent = "Envoi en cours…"; }
+        window.fetch(form.action.replace("formsubmit.co/", "formsubmit.co/ajax/"), { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
+          .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function () {
+            form.innerHTML = '<div class="rounded-md border border-line bg-mist p-6" role="status"><p class="font-display text-xl font-600 text-ink">Votre demande est bien partie.</p><p class="mt-2 text-body">Merci de votre confiance. L\'équipe Pilotech vous recontacte sous 24 heures ouvrées.</p></div>';
+            form.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+          })
+          .catch(function () { if (btn) { btn.disabled = false; btn.textContent = label; } form.submit(); });
       });
     });
   }
@@ -176,7 +214,7 @@
     var el = document.getElementById("preloader");
     if (!el) return;
     if (document.documentElement.classList.contains("no-preloader")) { el.remove(); return; }
-    var start = Date.now(), minShown = reduce ? 0 : 900, finished = false;
+    var start = Date.now(), minShown = reduce ? 0 : 1400, finished = false;
     function done() {
       if (finished) return; finished = true;
       el.classList.add("is-done");
@@ -185,9 +223,9 @@
     }
     function finish() { window.setTimeout(done, Math.max(0, minShown - (Date.now() - start))); }
     if (document.readyState === "complete") finish(); else window.addEventListener("load", finish);
-    window.setTimeout(done, 3500); /* filet de sécurité si une ressource externe traîne */
+    window.setTimeout(done, 4000); /* filet de sécurité si une ressource externe traîne */
   }
 
-  function init() { initTheme(); initPreloader(); initMenus(); initDrawer(); initGallery(); initTabs(); initSteps(); initForms(); }
+  function init() { initTheme(); initPreloader(); initMenus(); initDrawer(); initGallery(); initSlides(); initTabs(); initSteps(); initForms(); }
   if (document.readyState !== "loading") init(); else document.addEventListener("DOMContentLoaded", init);
 })();

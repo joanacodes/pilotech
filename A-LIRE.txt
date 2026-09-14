@@ -1,40 +1,26 @@
-Mise à jour n°2 — mode sombre, logo, préchargeur, favicon
-=========================================================
+Mise à jour n°3 — cartes « 3 solutions », diaporama, préchargeur, FormSubmit
+============================================================================
 
-1. Dézipper ce dossier À LA RACINE de C:\Projets\pilotech en acceptant le remplacement des fichiers.
-   (_config.yml n'est pas inclus : votre baseurl "/pilotech" est conservé.)
+1. Dézipper ce dossier À LA RACINE de C:\Projets\pilotech (les fichiers remplacent les anciens).
+   Si Windows crée un sous-dossier « pilotech-maj-3 », déplacer son contenu à la racine.
 
-2. Dans PowerShell, à la racine du projet :
-   git rm -r --quiet assets/img/blog                 # visuels du blog, plus utilisés
-   git rm --quiet assets/img/brand/favicon.svg       # remplacé par favicon.ico / png
+2. PowerShell, à la racine du projet :
    git add .
-   git commit -m "Mode sombre, nouveau logo, préchargeur, favicon"
+   git commit -m "Cartes 3 solutions, diaporama accueil, préchargeur, envoi FormSubmit"
    git push
 
 3. Attendre une minute, puis Ctrl+F5 sur https://joanacodes.github.io/pilotech/
 
+4. FormSubmit : faire UN envoi de test depuis le site en ligne. L'adresse info.pilotech@gmail.com reçoit
+   un e-mail « Activate form » : cliquer le lien une fois. Ensuite tout arrive dans cette boîte.
+
 Fichiers inclus :
   README.md
-  _includes/cta.html
-  _includes/footer.html
-  _includes/head.html
-  _includes/header.html
-  _includes/icons.html
-  _includes/product-card.html
-  _includes/reviews.html
-  _includes/seo.html
-  _layouts/default.html
-  _layouts/product.html
-  assets/css/site.css
-  assets/img/brand/apple-touch-icon.png
-  assets/img/brand/favicon-192.png
-  assets/img/brand/favicon-32.png
-  assets/img/brand/favicon-512.png
-  assets/img/brand/favicon.ico
-  assets/img/brand/pilotech-logo-dark.png
-  assets/img/brand/pilotech-logo.png
-  assets/img/brand/preloader.jpg
-  assets/js/site.js
   index.html
   src/input.css
-  tailwind.config.js
+  assets/css/site.css
+  assets/js/site.js
+  _includes/form-devis.html
+  assets/img/brand/hero-1.jpg
+  assets/img/brand/hero-2.jpg
+  assets/img/brand/hero-3.jpg
