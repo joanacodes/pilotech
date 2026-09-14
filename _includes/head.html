@@ -1,7 +1,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% include seo.html %}
-<link rel="icon" href="{{ '/assets/img/brand/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/img/brand/favicon.ico' | relative_url }}" sizes="48x48">
+<link rel="icon" href="{{ '/assets/img/brand/favicon-32.png' | relative_url }}" type="image/png" sizes="32x32">
+<link rel="icon" href="{{ '/assets/img/brand/favicon-192.png' | relative_url }}" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="{{ '/assets/img/brand/apple-touch-icon.png' | relative_url }}">
+<meta name="color-scheme" content="light dark">
+<script>
+  /* Applique le thème mémorisé avant le premier rendu (évite le flash) et ne rejoue pas le préchargeur dans la même session. */
+  (function () { try {
+    var t = localStorage.getItem("theme");
+    if (t === "dark" || (t !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches)) document.documentElement.classList.add("dark");
+    if (sessionStorage.getItem("pilotech-loaded")) document.documentElement.classList.add("no-preloader");
+  } catch (e) {} })();
+</script>
 <link rel="preload" href="{{ '/assets/fonts/ibm-plex-sans-condensed-latin-700-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{{ '/assets/fonts/ibm-plex-sans-latin-400-normal.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">

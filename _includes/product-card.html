@@ -1,8 +1,8 @@
 {%- comment -%} Carte produit. Paramètres : product (objet), compact (true pour la version réduite) {%- endcomment -%}
 {%- assign p = include.product -%}
 {%- if p.image contains "http" -%}{%- assign src = p.image -%}{%- else -%}{%- assign src = p.image | relative_url -%}{%- endif -%}
-<a href="{{ p.url | relative_url }}" class="group flex flex-col rounded-md border border-line bg-white p-4 no-underline transition-colors hover:border-brand">
-  <div class="flex {% if include.compact %}h-28{% else %}h-40{% endif %} items-center justify-center rounded bg-mist p-3">
+<a href="{{ p.url | relative_url }}" class="group flex flex-col rounded-md border border-line bg-paper p-4 no-underline transition-colors hover:border-brand">
+  <div class="flex {% if include.compact %}h-28{% else %}h-40{% endif %} items-center justify-center rounded bg-tile p-3">
     <img src="{{ src }}" alt="{{ p.brand }} {{ p.name }}" loading="lazy" class="max-h-full max-w-full object-contain">
   </div>
   <p class="mt-4 text-xs text-muted">{{ p.brand }}, {{ p.type_label }}</p>

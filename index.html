@@ -55,7 +55,7 @@ image: /assets/img/climatisation/daiseikai-10-toshiba-living-room.jpg
         <li>
           {%- if p.image contains "http" -%}{%- assign src = p.image -%}{%- else -%}{%- assign src = p.image | relative_url -%}{%- endif -%}
           <a href="{{ p.url | relative_url }}" class="group block no-underline" title="{{ p.brand }} {{ p.name }}">
-            <span class="flex h-16 items-center justify-center rounded bg-mist p-2"><img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain"></span>
+            <span class="flex h-16 items-center justify-center rounded bg-tile p-2"><img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain"></span>
             <span class="mt-1.5 block truncate text-xs text-body group-hover:text-brand">{{ p.name }}</span>
           </a>
         </li>
@@ -79,11 +79,11 @@ image: /assets/img/climatisation/daiseikai-10-toshiba-living-room.jpg
     <div class="mt-8" data-tabs>
       <div class="flex flex-wrap gap-2" role="tablist" aria-label="Type de logement">
         {%- for l in site.data.logements -%}
-        <button type="button" role="tab" id="tab-{{ l.id }}" aria-controls="panel-{{ l.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-tab="{{ l.id }}" class="rounded border border-line bg-white px-4 py-2.5 text-sm font-500 text-ink aria-selected:border-brand aria-selected:bg-brand aria-selected:text-white">{{ l.label }}</button>
+        <button type="button" role="tab" id="tab-{{ l.id }}" aria-controls="panel-{{ l.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" data-tab="{{ l.id }}" class="rounded border border-line bg-paper px-4 py-2.5 text-sm font-500 text-ink aria-selected:border-brand aria-selected:bg-brand aria-selected:text-white">{{ l.label }}</button>
         {%- endfor -%}
       </div>
       {%- for l in site.data.logements -%}
-      <div role="tabpanel" id="panel-{{ l.id }}" aria-labelledby="tab-{{ l.id }}" data-tab-content="{{ l.id }}" {% unless forloop.first %}hidden{% endunless %} class="mt-6 rounded-md border border-line bg-white p-6 lg:p-8">
+      <div role="tabpanel" id="panel-{{ l.id }}" aria-labelledby="tab-{{ l.id }}" data-tab-content="{{ l.id }}" {% unless forloop.first %}hidden{% endunless %} class="mt-6 rounded-md border border-line bg-paper p-6 lg:p-8">
         <p class="max-w-2xl text-body">{{ l.summary }}</p>
         <div class="mt-6 grid gap-8 lg:grid-cols-3">
           {%- assign universe_keys = "climatisation,invisible,ventilation" | split: "," -%}
@@ -99,7 +99,7 @@ image: /assets/img/climatisation/daiseikai-10-toshiba-living-room.jpg
                   {%- if p.slug == slug -%}
                   {%- if p.image contains "http" -%}{%- assign src = p.image -%}{%- else -%}{%- assign src = p.image | relative_url -%}{%- endif -%}
                   <li><a href="{{ p.url | relative_url }}" class="group block rounded border border-line p-3 no-underline hover:border-brand">
-                    <span class="flex h-20 items-center justify-center rounded bg-mist p-2"><img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain"></span>
+                    <span class="flex h-20 items-center justify-center rounded bg-tile p-2"><img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain"></span>
                     <span class="mt-2 block text-sm font-600 text-ink group-hover:text-brand">{{ p.name }}</span>
                     <span class="block text-xs text-muted">{{ p.tagline }}</span>
                   </a></li>

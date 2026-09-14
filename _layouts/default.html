@@ -4,7 +4,12 @@
   {% include head.html %}
 </head>
 <body class="min-h-screen flex flex-col">
-  <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-ink">Aller au contenu</a>
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <img src="{{ '/assets/img/brand/pilotech-logo-dark.png' | relative_url }}" alt="" width="674" height="192" class="preloader-logo" fetchpriority="high">
+    <div class="thermal" data-draw></div>
+  </div>
+  <noscript><style>.preloader { display: none; }</style></noscript>
+  <a href="#contenu" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-paper focus:px-4 focus:py-2 focus:text-ink">Aller au contenu</a>
   {% include header.html %}
   {% include breadcrumb.html %}
   <main id="contenu" class="flex-1">{{ content }}</main>

@@ -16,7 +16,7 @@ layout: default
             <img data-gallery-main src="{{ main_src }}" alt="{{ page.brand }} {{ page.name }}" width="1200" height="900" fetchpriority="high">
             <button type="button" data-gallery-prev class="gallery-arrow left-3" aria-label="Image précédente">{% include icons.html name="chevron-left" class="h-5 w-5" %}</button>
             <button type="button" data-gallery-next class="gallery-arrow right-3" aria-label="Image suivante">{% include icons.html name="chevron-right" class="h-5 w-5" %}</button>
-            <span data-gallery-counter class="absolute bottom-3 right-3 rounded bg-white/90 px-2 py-0.5 text-xs text-muted num">1 / {{ page.gallery.size }}</span>
+            <span data-gallery-counter class="absolute bottom-3 right-3 rounded bg-paper/90 px-2 py-0.5 text-xs text-muted num">1 / {{ page.gallery.size }}</span>
           </div>
           <div class="gallery-thumbs" role="list">
             {%- for g in page.gallery -%}
@@ -122,7 +122,7 @@ layout: default
       <div class="mt-8 grid gap-8 md:grid-cols-2">
         {%- for s in page.schemas -%}
         <figure>
-          <img src="{{ s.src | relative_url }}" alt="{{ s.alt | default: s.title }}" loading="lazy" class="aspect-[4/3] w-full rounded-md bg-white object-contain">
+          <img src="{{ s.src | relative_url }}" alt="{{ s.alt | default: s.title }}" loading="lazy" class="aspect-[4/3] w-full rounded-md bg-tile object-contain">
           <figcaption class="mt-3 font-600 text-ink">{{ s.title }}</figcaption>
         </figure>
         {%- endfor -%}
@@ -138,7 +138,7 @@ layout: default
     <div class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
       {%- for c in page.controls -%}
       <figure>
-        <div class="flex h-48 items-center justify-center rounded-md border border-line bg-white p-5"><img src="{{ c.img | relative_url }}" alt="{{ c.label }}" loading="lazy" class="max-h-full max-w-full object-contain"></div>
+        <div class="flex h-48 items-center justify-center rounded-md border border-line bg-tile p-5"><img src="{{ c.img | relative_url }}" alt="{{ c.label }}" loading="lazy" class="max-h-full max-w-full object-contain"></div>
         <figcaption class="mt-3 text-sm font-600 text-ink">{{ c.label }}</figcaption>
       </figure>
       {%- endfor -%}
@@ -171,7 +171,7 @@ layout: default
       <p class="mt-2 text-body">Brochures et notices du constructeur, à télécharger.</p>
       <ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {%- for d in page.docs -%}
-        <li><a href="{{ d.href | relative_url }}" target="_blank" rel="noopener" class="flex items-center gap-4 rounded-md border border-line bg-white p-4 no-underline transition-colors hover:border-brand">
+        <li><a href="{{ d.href | relative_url }}" target="_blank" rel="noopener" class="flex items-center gap-4 rounded-md border border-line bg-paper p-4 no-underline transition-colors hover:border-brand">
           <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded bg-brand-light text-brand">{% include icons.html name="pdf" class="h-5 w-5" %}</span>
           <span><span class="block font-600 text-ink">{{ d.title }}</span><span class="block text-xs text-muted">PDF{% if d.size %}, {{ d.size }}{% endif %}</span></span>
         </a></li>

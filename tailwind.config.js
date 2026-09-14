@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 // Palette dérivée du logo Pilotech : bleu marine (texte), chevron bleu (froid) → orange (chaud).
+const v = (name) => `rgb(var(--${name}) / <alpha-value>)`; // couleur pilotée par une variable CSS (mode clair / sombre)
+
 module.exports = {
+  darkMode: "class",
   content: [
     "./_layouts/**/*.html",
     "./_includes/**/*.html",
@@ -18,14 +21,17 @@ module.exports = {
     container: { center: true, padding: { DEFAULT: "1.25rem", lg: "2rem" } },
     extend: {
       colors: {
-        ink: "#14213D",      // titres, texte fort
-        body: "#3D4A5F",     // texte courant
-        muted: "#6B7889",    // texte secondaire
-        brand: { DEFAULT: "#294D7C", dark: "#1E3A5F", light: "#E8EFF7" }, // marine du logo
-        cool: { DEFAULT: "#0487F1", light: "#E3F1FE" },  // froid / rafraîchissement
-        warm: { DEFAULT: "#E2622B", light: "#FCEDE4" },  // chaud / chauffage
-        mist: "#F2F5F9",     // fond des sections alternées
-        line: "#D9E0EA",     // filets
+        ink: v("c-ink"),        // titres, texte fort
+        body: v("c-body"),      // texte courant
+        muted: v("c-muted"),    // texte secondaire
+        paper: v("c-paper"),    // fond des pages et des cartes
+        deep: v("c-deep"),      // footer, préchargeur, vidéos : toujours sombre
+        tile: "#F2F5F9",        // fond des visuels produits : toujours clair (photos sur fond blanc)
+        mist: v("c-mist"),      // sections alternées
+        line: v("c-line"),      // filets
+        brand: { DEFAULT: v("c-brand"), dark: v("c-brand-dark"), light: v("c-brand-light") },
+        cool: { DEFAULT: "#0487F1", light: v("c-cool-light") },  // froid / rafraîchissement
+        warm: { DEFAULT: "#E2622B", light: v("c-warm-light") },  // chaud / chauffage
       },
       fontFamily: {
         sans: ['"IBM Plex Sans"', "system-ui", "sans-serif"],

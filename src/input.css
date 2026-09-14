@@ -10,43 +10,58 @@
 
 /* ---- Polices auto-hébergées (RGPD : aucun appel à Google Fonts) ---- */
 @font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  src: url("../fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  src: url("../fonts/ibm-plex-sans-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: "IBM Plex Sans"; font-style: italic; font-weight: 400; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-400-italic.woff2") format("woff2"); }
+  src: url("../fonts/ibm-plex-sans-latin-400-italic.woff2") format("woff2"); }
 @font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  src: url("../fonts/ibm-plex-sans-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  src: url("../fonts/ibm-plex-sans-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  src: url("../fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  src: url("../fonts/ibm-plex-sans-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: "IBM Plex Sans Condensed"; font-style: normal; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-condensed-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  src: url("../fonts/ibm-plex-sans-condensed-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "IBM Plex Sans Condensed"; font-style: normal; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-condensed-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  src: url("../fonts/ibm-plex-sans-condensed-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: "IBM Plex Sans Condensed"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-condensed-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  src: url("../fonts/ibm-plex-sans-condensed-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "IBM Plex Sans Condensed"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-condensed-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  src: url("../fonts/ibm-plex-sans-condensed-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 @font-face { font-family: "IBM Plex Sans Condensed"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-condensed-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  src: url("../fonts/ibm-plex-sans-condensed-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 @font-face { font-family: "IBM Plex Sans Condensed"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/assets/fonts/ibm-plex-sans-condensed-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+  src: url("../fonts/ibm-plex-sans-condensed-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-024F,U+0259,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF; }
 
-/* ---- Base ---- */
+/* ---- Palette : mode clair (:root) et mode sombre (.dark sur <html>) ----
+   Valeurs RVB sans virgules pour permettre l'opacité Tailwind (bg-paper/90). */
 @layer base {
+  :root {
+    --c-ink: 20 33 61;         --c-body: 61 74 95;        --c-muted: 107 120 137;
+    --c-paper: 255 255 255;    --c-deep: 20 33 61;        --c-mist: 242 245 249;   --c-line: 217 224 234;
+    --c-brand: 41 77 124;      --c-brand-dark: 30 58 95;  --c-brand-light: 232 239 247;
+    --c-cool-light: 227 241 254; --c-warm-light: 252 237 228;
+    color-scheme: light;
+  }
+  .dark {
+    --c-ink: 236 241 247;      --c-body: 195 204 218;     --c-muted: 139 152 172;
+    --c-paper: 15 26 46;       --c-deep: 8 15 28;         --c-mist: 22 35 59;      --c-line: 42 58 85;
+    --c-brand: 79 143 217;     --c-brand-dark: 111 165 226; --c-brand-light: 27 46 75;
+    --c-cool-light: 18 48 79;  --c-warm-light: 74 36 18;
+    color-scheme: dark;
+  }
   html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-  body { @apply font-sans text-body antialiased bg-white; font-feature-settings: "kern", "liga"; }
+  body { @apply font-sans text-body antialiased bg-paper; font-feature-settings: "kern", "liga"; }
   h1, h2, h3, h4 { @apply font-display text-ink; text-wrap: balance; }
   h1 { @apply text-display-lg font-700; }
   h2 { @apply text-display-md font-600; }
   h3 { @apply text-xl font-600; }
   a { @apply underline-offset-4; }
   :focus-visible { outline: 2px solid #0487F1; outline-offset: 3px; border-radius: 2px; }
-  ::selection { background: #E3F1FE; color: #14213D; }
+  ::selection { background: rgb(var(--c-cool-light)); color: rgb(var(--c-ink)); }
   details summary::-webkit-details-marker { display: none; }
   summary { list-style: none; }
   img { height: auto; }
@@ -56,9 +71,9 @@
 @layer components {
   .btn { @apply inline-flex items-center justify-center gap-2 rounded px-5 py-3 text-sm font-600 transition-colors no-underline; }
   .btn-primary { @apply bg-brand text-white hover:bg-brand-dark; }
-  .btn-secondary { @apply border border-ink text-ink hover:bg-ink hover:text-white; }
+  .btn-secondary { @apply border border-ink text-ink hover:bg-ink hover:text-paper; }
   .btn-ghost { @apply text-brand hover:text-brand-dark; }
-  .btn-inverse { @apply bg-white text-ink hover:bg-mist; }
+  .btn-inverse { @apply bg-paper text-ink hover:bg-mist; }
 
   .link { @apply text-brand underline hover:text-brand-dark; }
   .num { font-variant-numeric: tabular-nums; }
@@ -87,17 +102,17 @@
   .class-chip-warm { @apply bg-warm-light text-warm; }
 
   /* Galerie produit */
-  .gallery-main { @apply relative flex items-center justify-center overflow-hidden rounded-md bg-mist; aspect-ratio: 4 / 3; }
+  .gallery-main { @apply relative flex items-center justify-center overflow-hidden rounded-md bg-tile; aspect-ratio: 4 / 3; }
   .gallery-main img { @apply max-h-full max-w-full object-contain; transition: opacity .18s ease; }
   .gallery-thumbs { @apply mt-3 flex gap-2 overflow-x-auto pb-1; scrollbar-width: none; }
   .gallery-thumbs::-webkit-scrollbar { display: none; }
-  .gallery-thumb { @apply flex h-16 w-20 shrink-0 items-center justify-center rounded border border-line bg-white p-1.5 opacity-70 transition; }
+  .gallery-thumb { @apply flex h-16 w-20 shrink-0 items-center justify-center rounded border border-line bg-tile p-1.5 opacity-70 transition; }
   .gallery-thumb:hover, .gallery-thumb.is-current { @apply border-brand opacity-100; }
   .gallery-thumb img { @apply max-h-full max-w-full object-contain; }
-  .gallery-arrow { @apply absolute top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white/95 text-ink transition hover:border-brand hover:text-brand; }
+  .gallery-arrow { @apply absolute top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-line bg-paper/95 text-ink transition hover:border-brand hover:text-brand; }
 
   /* Vidéo 16/9 */
-  .video { @apply relative w-full overflow-hidden rounded-md bg-ink; aspect-ratio: 16 / 9; }
+  .video { @apply relative w-full overflow-hidden rounded-md bg-deep; aspect-ratio: 16 / 9; }
   .video iframe { @apply absolute inset-0 h-full w-full border-0; }
 
   /* Menu déroulant (desktop) */
@@ -108,7 +123,7 @@
   [data-menu] > a { position: relative; }
 
   /* Tiroir mobile */
-  .drawer { @apply fixed inset-y-0 right-0 z-[70] flex w-80 max-w-[88vw] flex-col bg-white; transform: translateX(100%); transition: transform .25s ease; }
+  .drawer { @apply fixed inset-y-0 right-0 z-[70] flex w-80 max-w-[88vw] flex-col bg-paper; transform: translateX(100%); transition: transform .25s ease; }
   .drawer.is-open { transform: none; }
   @media (prefers-reduced-motion: reduce) { .drawer { transition: none; } }
 
@@ -137,16 +152,27 @@
 
   /* Frise du processus : le trait se colore au défilement */
   .steps { position: relative; }
-  .steps::before { content: ""; position: absolute; left: 19px; top: 8px; bottom: 8px; width: 2px; background: #D9E0EA; }
-  .steps::after { content: ""; position: absolute; left: 19px; top: 8px; width: 2px; background: #294D7C; height: var(--steps-progress, 0%); transition: height .4s ease; }
-  .step-dot { @apply relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-line bg-white font-display text-sm font-600 text-muted; transition: border-color .3s, color .3s; }
+  .steps::before { content: ""; position: absolute; left: 19px; top: 8px; bottom: 8px; width: 2px; background: rgb(var(--c-line)); }
+  .steps::after { content: ""; position: absolute; left: 19px; top: 8px; width: 2px; background: rgb(var(--c-brand)); height: var(--steps-progress, 0%); transition: height .4s ease; }
+  .step-dot { @apply relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-line bg-paper font-display text-sm font-600 text-muted; transition: border-color .3s, color .3s; }
   .step.is-active .step-dot { @apply border-brand text-brand; }
   @media (prefers-reduced-motion: reduce) { .steps::after { transition: none; } .step-dot { transition: none; } }
 
   /* Champs de formulaire */
-  .field { @apply w-full rounded border border-line bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none; }
+  .field { @apply w-full rounded border border-line bg-paper px-3.5 py-2.5 text-sm text-ink placeholder:text-muted/70 focus:border-brand focus:outline-none; }
   .field-label { @apply mb-1.5 block text-sm font-500 text-ink; }
 }
+
+/* ---- Préchargeur : photo de salon sous un voile bleu Pilotech, logo et filet thermique ---- */
+.preloader { position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+  background-color: #14213D;
+  background-image: linear-gradient(rgba(20,33,61,.84), rgba(41,77,124,.84)), url("../img/brand/preloader.jpg");
+  background-size: cover; background-position: center; transition: opacity .55s ease, visibility .55s; }
+.preloader.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.preloader-logo { width: min(320px, 70vw); height: auto; }
+.preloader .thermal { width: min(240px, 50vw); }
+html.no-preloader .preloader { display: none; }
+@media (prefers-reduced-motion: reduce) { .preloader { transition: none; } }
 
 /* En-tête collant */
 #header { position: sticky; top: 0; z-index: 50; }

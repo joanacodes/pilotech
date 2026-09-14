@@ -1,9 +1,9 @@
 {%- assign products = site.products | sort: "order" -%}
-<footer class="mt-auto bg-ink text-white">
+<footer class="mt-auto bg-deep text-white">
   <div class="container py-14">
     <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-12">
       <div class="lg:col-span-4">
-        <a href="{{ '/' | relative_url }}" class="inline-block rounded bg-white px-3 py-2"><img src="{{ '/assets/img/brand/pilotech-logo.png' | relative_url }}" alt="Pilotech" width="714" height="185" class="h-10 w-auto"></a>
+        <a href="{{ '/' | relative_url }}" class="inline-block"><img src="{{ '/assets/img/brand/pilotech-logo-dark.png' | relative_url }}" alt="Pilotech" width="674" height="192" class="h-12 w-auto"></a>
         <p class="mt-5 max-w-sm text-sm leading-relaxed text-white/75">Climatisation réversible et pompes à chaleur Toshiba, climatisation sans unité extérieure Teknopoint, ventilation par insufflation VMI. Installation, entretien et dépannage à Paris et dans toute l'Île-de-France.</p>
         <ul class="mt-6 space-y-2 text-sm">
           <li><a href="{{ site.company.phone_href }}" class="inline-flex items-center gap-2 hover:text-cool">{% include icons.html name="phone" class="h-4 w-4 text-white/60" %}{{ site.company.phone }}</a></li>

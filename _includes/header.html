@@ -1,5 +1,5 @@
 {%- assign products = site.products | sort: "order" -%}
-<header id="header" class="bg-white border-b border-line">
+<header id="header" class="bg-paper border-b border-line">
   <div class="hidden lg:block border-b border-line">
     <div class="container flex items-center justify-between py-1.5 text-xs text-muted">
       <div class="flex items-center gap-5">
@@ -17,7 +17,8 @@
 
   <div class="container relative flex items-center justify-between gap-6 py-3">
     <a href="{{ '/' | relative_url }}" class="shrink-0" aria-label="Pilotech, accueil">
-      <img src="{{ '/assets/img/brand/pilotech-logo.png' | relative_url }}" alt="Pilotech" width="714" height="185" class="h-11 w-auto lg:h-12">
+      <img src="{{ '/assets/img/brand/pilotech-logo.png' | relative_url }}" alt="Pilotech" width="674" height="192" class="h-11 w-auto dark:hidden lg:h-12">
+      <img src="{{ '/assets/img/brand/pilotech-logo-dark.png' | relative_url }}" alt="Pilotech" width="674" height="192" class="hidden h-11 w-auto dark:block lg:h-12">
     </a>
 
     <nav class="hidden lg:flex items-center gap-7 text-sm font-500 text-ink" aria-label="Navigation principale">
@@ -31,7 +32,7 @@
         <div data-menu>
           <a href="{{ item.url | relative_url }}" class="inline-flex items-center gap-1 py-2 {% if active %}text-brand{% else %}hover:text-brand{% endif %}" aria-haspopup="true" aria-expanded="false">{{ item.title }}{% include icons.html name="chevron-down" class="h-3.5 w-3.5 text-muted" %}</a>
           <div class="menu-panel" role="region" aria-label="Gammes {{ item.title | downcase }}">
-            <div class="border-t border-line bg-white">
+            <div class="border-t border-line bg-paper">
               <div class="container py-8">
                 {%- assign u = site.universes[item.menu] -%}
                 {%- assign list = products | where: "universe", item.menu -%}
@@ -45,7 +46,7 @@
                 <div class="grid grid-cols-5 gap-x-5 gap-y-6">
                   {%- for p in list -%}
                   <a href="{{ p.url | relative_url }}" class="group no-underline">
-                    <div class="flex h-24 items-center justify-center rounded-md bg-mist p-3">
+                    <div class="flex h-24 items-center justify-center rounded-md bg-tile p-3">
                       {%- if p.image contains "http" -%}{%- assign src = p.image -%}{%- else -%}{%- assign src = p.image | relative_url -%}{%- endif -%}
                       <img src="{{ src }}" alt="" loading="lazy" class="max-h-full max-w-full object-contain">
                     </div>
@@ -65,13 +66,17 @@
     </nav>
 
     <div class="flex items-center gap-3">
+      <button type="button" data-theme-toggle class="inline-flex h-11 w-11 items-center justify-center rounded border border-line text-muted hover:text-ink" aria-label="Basculer entre mode clair et mode sombre" aria-pressed="false">
+        <span class="dark:hidden">{% include icons.html name="moon" class="h-5 w-5" %}</span>
+        <span class="hidden dark:block">{% include icons.html name="sun" class="h-5 w-5" %}</span>
+      </button>
       <a href="{{ '/contact/' | relative_url }}" class="btn btn-primary hidden sm:inline-flex">Demander un devis</a>
       <button type="button" data-drawer-open class="lg:hidden inline-flex h-11 w-11 items-center justify-center rounded border border-line text-ink" aria-label="Ouvrir le menu" aria-controls="drawer" aria-expanded="false">{% include icons.html name="menu" class="h-6 w-6" %}</button>
     </div>
   </div>
 </header>
 
-<div data-drawer-backdrop class="fixed inset-0 z-[60] hidden bg-ink/50 lg:hidden"></div>
+<div data-drawer-backdrop class="fixed inset-0 z-[60] hidden bg-deep/60 lg:hidden"></div>
 <nav id="drawer" class="drawer lg:hidden" aria-label="Menu mobile" aria-hidden="true">
   <div class="flex items-center justify-between border-b border-line px-5 py-4">
     <span class="font-display text-lg font-600 text-ink">Menu</span>

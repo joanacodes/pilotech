@@ -101,6 +101,21 @@ Le fichier `assets/css/site.css` doit être commité : GitHub Pages ne lance pas
    Fournir ensuite `assets/img/invisible/piccolo.png` et `assets/img/invisible/cave-a-vin.png` (placeholders pour l'instant).
 5. Déclarer `https://<domaine>/sitemap.xml` dans la Search Console.
 
+## Mode sombre, préchargeur, logo et favicon
+
+- **Mode sombre** : bouton lune/soleil dans l'en-tête. Le choix est mémorisé (`localStorage`) ; sans choix, le site suit
+  le réglage du système. Les couleurs sont des variables CSS définies dans `src/input.css` (`:root` = clair, `.dark` =
+  sombre) : pour ajuster une teinte, modifier la variable, pas les gabarits. Les visuels produits gardent un fond
+  clair (`bg-tile`) car les photos constructeur sont sur fond blanc.
+- **Préchargeur** : `_layouts/default.html` + classe `.preloader` dans `src/input.css`. Photo `assets/img/brand/preloader.jpg`
+  sous un voile bleu Pilotech ; affiché une fois par session, retiré au chargement (au plus 3,5 s). Pour changer la
+  photo, remplacer le fichier (1920 px de large suffit) ; pour l'opacité du voile, les deux `rgba(…, .84)`.
+- **Logo** : `assets/img/brand/pilotech-logo.png` (fond clair) et `pilotech-logo-dark.png` (fond sombre, préchargeur,
+  footer). Les deux sont affichés dans l'en-tête et Tailwind masque celui qui ne correspond pas au thème.
+- **Favicon** : `favicon.ico`, `favicon-32.png`, `favicon-192.png`, `favicon-512.png` et `apple-touch-icon.png`
+  (chevron sur tuile bleue, car iOS remplace la transparence par du noir). Le chevron fond vers le transparent,
+  il fonctionne sur onglet clair comme sombre.
+
 ## Choix techniques
 
 - **Une seule source de vérité** : les fiches produits sont de la donnée (YAML) rendue par un gabarit unique, pas 17 pages HTML dupliquées.

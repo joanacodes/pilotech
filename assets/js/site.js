@@ -155,6 +155,39 @@
     });
   }
 
-  function init() { initMenus(); initDrawer(); initGallery(); initTabs(); initSteps(); initForms(); }
+  /* Mode sombre : bouton, mémorisation, synchronisation avec le réglage système */
+  function initTheme() {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll("[data-theme-toggle]");
+    function apply(dark, persist) {
+      root.classList.toggle("dark", dark);
+      buttons.forEach(function (b) { b.setAttribute("aria-pressed", dark ? "true" : "false"); });
+      if (persist) { try { localStorage.setItem("theme", dark ? "dark" : "light"); } catch (e) {} }
+    }
+    buttons.forEach(function (b) { b.addEventListener("click", function () { apply(!root.classList.contains("dark"), true); }); });
+    apply(root.classList.contains("dark"), false);
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    var onChange = function (e) { try { if (!localStorage.getItem("theme")) apply(e.matches, false); } catch (err) {} };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+  }
+
+  /* Préchargeur : affiché au premier chargement de la session, retiré une fois la page chargée */
+  function initPreloader() {
+    var el = document.getElementById("preloader");
+    if (!el) return;
+    if (document.documentElement.classList.contains("no-preloader")) { el.remove(); return; }
+    var start = Date.now(), minShown = reduce ? 0 : 900, finished = false;
+    function done() {
+      if (finished) return; finished = true;
+      el.classList.add("is-done");
+      try { sessionStorage.setItem("pilotech-loaded", "1"); } catch (e) {}
+      window.setTimeout(function () { el.remove(); }, 700);
+    }
+    function finish() { window.setTimeout(done, Math.max(0, minShown - (Date.now() - start))); }
+    if (document.readyState === "complete") finish(); else window.addEventListener("load", finish);
+    window.setTimeout(done, 3500); /* filet de sécurité si une ressource externe traîne */
+  }
+
+  function init() { initTheme(); initPreloader(); initMenus(); initDrawer(); initGallery(); initTabs(); initSteps(); initForms(); }
   if (document.readyState !== "loading") init(); else document.addEventListener("DOMContentLoaded", init);
 })();
